@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-node-conclusiones-y-retos">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v3.0.2">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="license" type="text/html" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<title>Conclusiones | Introducción a la Programación y Uso de Python</title>
+<script>document.querySelector("html").classList.add("js");</script>
+<script src="../libs/jquery/jquery.min.js"> </script>
+<script src="../libs/common_i18n.js"> </script>
+<script src="../libs/common.js"> </script>
+<script src="../libs/exe_export.js"> </script>
+<script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script>
+<link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/text/text.js"> </script>
+<link rel="stylesheet" href="../idevices/text/text.css">
+<link rel="stylesheet" href="../content/css/base.css">
+<script src="../theme/style.js"> </script>
+<link rel="stylesheet" href="../theme/style.css">
+<link rel="icon" type="image/x-icon" href="../libs/favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&amp;family=Courier+Prime:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+    /* Tipografía Profesional */
+    body {
+        font-family: 'Poppins', sans-serif !important;
+        color: #333;
+    }
+
+    /* Barra de progreso de lectura superior */
+    #progress-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: transparent;
+        z-index: 9999;
+    }
+    #progress-bar {
+        height: 5px;
+        background: linear-gradient(90deg, #e74c3c, #f1c40f, #2ecc71);
+        width: 0%;
+    }
+
+    /* Estilo de Tarjetas Modernas */
+    .iDevice {
+        border: none !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08) !important;
+        border-radius: 16px !important;
+        overflow: hidden;
+        margin-bottom: 35px !important;
+        transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+    }
+    .iDevice:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.12) !important;
+    }
+
+    /* Estilos Premium de Conclusiones */
+    .concl-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+    .concl-card {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+        border-top: 5px solid #3498db;
+        transition: all 0.3s ease;
+    }
+    .concl-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+    }
+    .concl-card.blue { border-top-color: #2c3e50; }
+    .concl-card.green { border-top-color: #2ecc71; }
+    .concl-card.amber { border-top-color: #f1c40f; }
+    .concl-card.coral { border-top-color: #e74c3c; }
+
+    /* Perfil del Autor */
+    .author-profile {
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 25px;
+        border: 1px solid #e2e8f0;
+        margin-top: 35px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        display: flex;
+        flex-direction: row;
+        gap: 25px;
+        align-items: flex-start; /* Alineado arriba para mayor orden */
+        overflow: hidden;
+        animation: authorFadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .author-photo-wrapper {
+        flex-shrink: 0;
+        width: 140px;
+        height: 140px;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 2px solid #1070f7; /* Borde gris pizarra muy sobrio y elegante */
+        box-shadow: 0 4px 15px rgba(100, 116, 139, 0.12);
+        animation: authorScaleIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+    }
+
+    .author-photo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .author-photo-wrapper:hover .author-photo {
+        transform: scale(1.06);
+    }
+
+    .author-info {
+        flex-grow: 1;
+        animation: authorFadeInRight 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+    }
+
+    .author-title {
+        color: #1070f7; /* Título en tono pizarra oscuro muy profesional */
+        margin-top: 0;
+        margin-bottom: 4px;
+        font-weight: 600;
+        font-size: 1.35em;
+    }
+
+    .author-subtitle {
+        color: #1070f7; /* Subtítulo en gris azulado sobrio */
+        font-weight: 500;
+        font-size: 0.9em;
+        margin-bottom: 12px;
+        display: block;
+    }
+
+    .author-bio {
+        color: #000000; /* Texto en negro para mayor contraste */
+        font-size: 0.9em;
+        line-height: 1.6;
+        text-align: justify;
+        margin: 0;
+    }
+
+    /* Responsive Profile */
+    @media (max-width: 640px) {
+        .author-profile {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            gap: 16px;
+        }
+        .author-photo-wrapper {
+            width: 130px;
+            height: 130px;
+        }
+        .author-bio {
+            text-align: justify;
+        }
+        .author-title, .author-subtitle {
+            text-align: center;
+        }
+    }
+
+    /* Keyframes for animations */
+    @keyframes authorFadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes authorScaleIn {
+        from {
+            opacity: 0;
+            transform: scale(0.85);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes authorFadeInRight {
+        from {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+</style>
+</head>
+<body class="exe-export exe-web-site" lang="es">
+<script>document.body.className+=" js"</script>
+<div class="exe-content exe-export pre-js siteNav-hidden"> 
+<nav id="siteNav"> 
+    <ul> 
+        <li> <a href="../index.html" class="main-node no-ch">Introducción al Curso Programación y Uso de Python </a></li>
+        <li> <a href="../html/unidad-1-introduccion-a-la-programacion.html" class="no-ch">Unidad 1: Introducción a la Programación</a></li>
+        <li> <a href="../html/unidad-2-conceptos-basicos-de-python.html" class="no-ch">Unidad 2: Conceptos básicos de Python</a></li>
+        <li> <a href="../html/unidad-3-variables-y-tipos-de-datos.html" class="no-ch">Unidad 3: Variables y Tipos de Datos</a></li>
+        <li> <a href="../html/unidad-4-estructuras-de-control.html" class="no-ch">Unidad 4: Estructuras de Control</a></li>
+        <li> <a href="../html/unidad-5-desarrollo-de-un-programa-completo.html" class="no-ch">Unidad 5: Desarrollo de un Programa Completo</a></li>
+        <li class="active"> <a href="../html/conclusiones-y-zona-de-retos.html" class="active no-ch">Conclusiones</a></li>
+    </ul>
+</nav>
+<main id="unidad-6-conclusiones" class="page"> 
+    <header id="header-unidad-6" class="main-header"> 
+        <div class="package-header">
+            <h1 class="package-title">Introducción a la Programación y Uso de Python</h1>
+            <p class="package-subtitle">Fundamentos prácticos y automatización de procesos para la transformación digital</p>
+        </div>
+        <div class="page-header"><h2 class="page-title">Conclusiones</h2></div>
+    </header>
+    
+    <div id="page-content-unidad-6" class="page-content"> 
+        
+        <!-- iDevice: Conclusiones y Diploma -->
+        <article id="idevice-conclusiones-diploma" class="box"> 
+            <header class="box-head"> 
+                <div class="box-icon exe-icon"> 
+                    <img src="../theme/icons/objectives.png" alt="">
+                </div>
+                <h1 class="box-title">🎓 Conclusiones y Logro del Aprendizaje</h1>
+                <button class="box-toggle box-toggle-on" title="Ocultar/Mostrar contenido"> <span>Ocultar/Mostrar contenido</span></button>
+            </header>
+            
+            <div class="box-content">
+                <p style="text-align: justify; line-height: 1.6; margin-bottom: 25px;">
+                    ¡Felicitaciones! Has completado el recorrido formativo del **Objeto Virtual de Aprendizaje (OVA)** en Python. A lo largo de estas 5 unidades teóricas y prácticas, has construido las bases del pensamiento computacional técnico. Para consolidar lo aprendido, explora estas conclusiones estructurales:
+                </p>
+                
+                <!-- Grid de Conclusiones -->
+                <div class="concl-grid">
+                    <div class="concl-card blue">
+                        <h4 style="margin: 0 0 10px; color: #2c3e50; font-weight: 600;">🧠 Lógica y Abstracción</h4>
+                        <p style="font-size: 0.88em; margin: 0; color: #555; line-height: 1.5; text-align: justify;">La programación consiste en fragmentar problemas complejos en pequeños pasos lógicos estructurados. El diseño de algoritmos es el cimiento de cualquier software eficiente.</p>
+                    </div>
+                    <div class="concl-card green">
+                        <h4 style="margin: 0 0 10px; color: #27ae60; font-weight: 600;">⚙️ Automatización</h4>
+                        <p style="font-size: 0.88em; margin: 0; color: #555; line-height: 1.5; text-align: justify;">Python es la herramienta por excelencia de la Industria 4.0. Con condicionales y bucles puedes automatizar horas de trabajo monótono en milisegundos.</p>
+                    </div>
+                    <div class="concl-card amber">
+                        <h4 style="margin: 0 0 10px; color: #d35400; font-weight: 600;">📦 Robustez y Sintaxis</h4>
+                        <p style="font-size: 0.88em; margin: 0; color: #555; line-height: 1.5; text-align: justify;">Comprender las variables, tipos de datos y estructuras de control te habilita para escribir código mantenible, limpio y semánticamente correcto.</p>
+                    </div>
+                    <div class="concl-card coral">
+                        <h4 style="margin: 0 0 10px; color: #c0392b; font-weight: 600;">🚀 Práctica Activa</h4>
+                        <p style="font-size: 0.88em; margin: 0; color: #555; line-height: 1.5; text-align: justify;">La habilidad técnica se pule mediante la experimentación. Encontrar y depurar bugs en la consola del sistema es el método de aprendizaje más valioso.</p>
+                    </div>
+                </div>
+
+                <!-- Detalles del Proyecto de Grado y Conclusión Contextual -->
+                <div style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; padding: 25px; border: 1px solid #cbd5e1; margin-top: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); font-family: 'Poppins', sans-serif;">
+                    <h3 style="color: #1a2a6c; margin-top: 0; font-weight: 600; display: flex; align-items: center; gap: 8px;">📚 Sobre este Objeto Virtual de Aprendizaje (OVA)</h3>
+                    <p style="color: #334155; font-size: 0.95em; line-height: 1.6; text-align: justify; margin-bottom: 20px;">
+                        Este Objeto Virtual de Aprendizaje (OVA) ha sido diseñado rigurosamente como una herramienta pedagógica interactiva de alta aplicabilidad, orientada de forma específica a **estudiantes de institutos técnicos y tecnológicos**. Su propósito principal es facilitar la transición del pensamiento algorítmico básico a la automatización práctica de procesos mediante el lenguaje de programación Python, un estándar fundamental en el desarrollo de la Industria 4.0.
+                    </p>
+                    
+                    <hr style="border: 0; border-top: 1px solid #cbd5e1; margin: 20px 0;">
+                    
+                    <div style="display: grid; grid-template-columns: 1fr; gap: 15px; text-align: left;">
+                        <div style="display: flex; align-items: flex-start; gap: 10px;">
+                            <span style="font-size: 1.5em; line-height: 1;">🎓</span>
+                            <div>
+                                <strong style="color: #2c3e50; display: block; font-size: 0.95em;">Proyecto Académico</strong>
+                                <span style="font-size: 0.9em; color: #555;">Trabajo de Grado para la <strong>Especialización en Ambientes y Recursos Digitales para la Educación</strong>.</span>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: flex-start; gap: 10px; margin-top: 10px;">
+                            <span style="font-size: 1.5em; line-height: 1;">👥</span>
+                            <div>
+                                <strong style="color: #2c3e50; display: block; font-size: 0.95em;">Público Objetivo</strong>
+                                <span style="font-size: 0.9em; color: #555;">Estudiantes de formación técnica y tecnológica que buscan fortalecer sus competencias en lógica computacional y desarrollo de software práctico.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perfil del Autor -->
+                <div class="author-profile">
+                    <div class="author-photo-wrapper">
+                        <img src="../content/img/foto_autor_ova.jpeg" alt="Felipe Caicedo" class="author-photo">
+                    </div>
+                    <div class="author-info">
+                        <h3 class="author-title">Perfil del Autor</h3>
+                        <span class="author-subtitle">Juan Felipe Caicedo | Ingeniero de Sistemas & Docente Catedrático</span>
+                        <div class="author-bio">
+                            <p>Soy Juan Felipe Caicedo, Ingeniero de Sistemas graduado de la Universidad del Tolima y desarrollador de software con experiencia en desarrollo web, automatización de procesos y transformación digital. Actualmente me desempeño como docente catedrático, acompañando la formación práctica y dinámica de estudiantes en programación, bases de datos y tecnologías emergentes. Este OVA refleja mi compromiso con la innovación educativa y el desarrollo de recursos digitales aplicados al mundo real.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </article>
+
+    </div>
+</main>
+
+<div class="nav-buttons"> 
+    <a href="../html/unidad-5-desarrollo-de-un-programa-completo.html" title="Anterior" class="nav-button nav-button-left"> <span>Anterior</span></a>
+    <span class="nav-button nav-button-right" aria-hidden="true" style="background-color: #b7b7b7;"> <span>Siguiente</span></span>
+</div>
+
+<footer id="siteFooter">
+    <div id="siteFooterContent"> 
+        <div id="packageLicense" class="cc cc-by-sa"> 
+            <p><span class="license-label">Licencia: </span><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="license">creative commons: attribution - share alike 4.0</a></p>
+        </div>
+        <div id="siteUserFooter"> 
+            <div>
+                <div id="progress-container">
+                    <div id="progress-bar"></div>
+                </div>
+                <div style="text-align: center; padding: 20px; border-top: 1px solid #eee; margin-top: 50px;">
+                    <p style="font-weight: 600; color: #555;">Juan Felipe Caicedo Tabio</p>
+                    <p style="font-size: 0.8em; color: #888;">Trabajo de Grado - Introducción a Python - 2026</p>
+                </div>
+                <script>
+                    window.onscroll = function() {
+                        var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                        var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                        var scrolled = (winScroll / height) * 100;
+                        document.getElementById("progress-bar").style.width = scrolled + "%";
+                    };
+                </script>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+<p id="made-with-eXe"> <a href="https://exelearning.net/" target="_blank" rel="noopener"> <span>Creado con eXeLearning <span>(nueva ventana)</span></span></a></p>
+
+</body>
+</html>

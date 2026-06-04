@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-node-20260324203214700MBK">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v3.0.2">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="license" type="text/html" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<title>Unidad 5: Desarrollo de un Programa Completo | Introducción a la Programación y Uso de Python</title>
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/text/text.js"> </script><link rel="stylesheet" href="../idevices/text/text.css">
+<link rel="stylesheet" href="../content/css/base.css">
+<script src="../theme/style.js"> </script><link rel="stylesheet" href="../theme/style.css">
+<link rel="icon" type="image/x-icon" href="../libs/favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&amp;display=swap" rel="stylesheet">
+<style>
+    /* Tipografía Profesional */
+    body {
+        font-family: 'Poppins', sans-serif !important;
+        color: #333;
+    }
+
+    /* Barra de progreso de lectura superior */
+    #progress-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: transparent;
+        z-index: 9999;
+    }
+    #progress-bar {
+        height: 5px;
+        background: linear-gradient(90deg, #2ecc71, #3498db);
+        width: 0%;
+    }
+
+    /* Estilo de Tarjetas para los iDevices */
+    .iDevice {
+        border: none !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+        border-radius: 12px !important;
+        overflow: hidden;
+        margin-bottom: 30px !important;
+        transition: transform 0.3s ease;
+    }
+    .iDevice:hover {
+        transform: translateY(-5px);
+    }
+
+    /* Modo Debug Estilos */
+    .debug-card {
+        background: #fff5f5;
+        border: 2px solid #e53e3e;
+        border-radius: 12px;
+        padding: 25px;
+        margin-bottom: 25px;
+        transition: all 0.3s;
+    }
+    .debug-card:hover {
+        box-shadow: 0 8px 20px rgba(229, 62, 62, 0.15);
+    }
+    .debug-title {
+        color: #c53030;
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 600;
+    }
+    .debug-editor {
+        background: #1e1e1e;
+        color: #d4d4d4;
+        padding: 15px;
+        border-radius: 8px;
+        font-family: 'Courier Prime', monospace;
+        line-height: 1.5;
+        margin: 15px 0;
+        font-size: 0.95em;
+        overflow-x: auto;
+    }
+    .debug-options {
+        margin: 20px 0;
+        padding: 0;
+        list-style: none;
+    }
+    .debug-opt-item {
+        background: white;
+        border: 1px solid #cbd5e1;
+        padding: 12px 16px;
+        border-radius: 8px;
+        margin-bottom: 8px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        transition: all 0.2s ease;
+        font-size: 0.95em;
+    }
+    .debug-opt-item:hover {
+        border-color: #e53e3e;
+        background: #fffafb;
+    }
+    .debug-opt-item.selected {
+        background: #ffebeb;
+        border-color: #e53e3e;
+        color: #c53030;
+        font-weight: 600;
+    }
+    .debug-opt-checkbox {
+        width: 18px;
+        height: 18px;
+        border: 2px solid #cbd5e1;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        color: transparent;
+        transition: all 0.2s;
+        flex-shrink: 0;
+    }
+    .debug-opt-item.selected .debug-opt-checkbox {
+        border-color: #e53e3e;
+        background: #e53e3e;
+        color: white;
+    }
+    .debug-btn {
+        background: #e53e3e !important;
+        border: none !important;
+        color: white !important;
+        font-weight: 600 !important;
+        padding: 8px 25px !important;
+        border-radius: 20px !important;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    .debug-btn:hover {
+        background: #c53030 !important;
+        transform: translateY(-1px);
+    }
+    .debug-feedback {
+        display: none;
+        margin-top: 15px;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 0.95em;
+        line-height: 1.5;
+        animation: slideDown 0.3s ease-out forwards;
+    }
+    .debug-feedback.success {
+        background: #e6fffa;
+        border: 1px solid #319795;
+        color: #234e52;
+    }
+    .debug-feedback.error {
+        background: #fff5f5;
+        border: 1px solid #e53e3e;
+        color: #742a2a;
+    }
+
+    /* Keyframes */
+    @keyframes slideDown {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+</head>
+<body class="exe-export exe-web-site" lang="es">
+<script>document.body.className+=" js"</script><div class="exe-content exe-export pre-js siteNav-hidden"> <nav id="siteNav"> <ul> <li> <a href="../index.html" class="main-node no-ch">Introducción al Curso Programación y Uso de Python </a>
+</li>
+<li> <a href="../html/unidad-1-introduccion-a-la-programacion.html" class="no-ch">Unidad 1: Introducción a la Programación</a>
+</li>
+<li> <a href="../html/unidad-2-conceptos-basicos-de-python.html" class="no-ch">Unidad 2: Conceptos básicos de Python</a>
+</li>
+<li> <a href="../html/unidad-3-variables-y-tipos-de-datos.html" class="no-ch">Unidad 3: Variables y Tipos de Datos</a>
+</li>
+<li> <a href="../html/unidad-4-estructuras-de-control.html" class="no-ch">Unidad 4: Estructuras de Control</a>
+</li>
+<li class="active"> <a href="../html/unidad-5-desarrollo-de-un-programa-completo.html" class="active no-ch">Unidad 5: Desarrollo de un Programa Completo</a>
+</li>
+<li> <a href="../html/conclusiones-y-zona-de-retos.html" class="no-ch">Conclusiones</a>
+</li>
+</ul></nav><main id="20260324203214700MBK" class="page"> <header id="header-20260324203214700MBK" class="main-header"> <div class="package-header">
+<h1 class="package-title">Introducción a la Programación y Uso de Python</h1>
+<p class="package-subtitle">Fundamentos prácticos y automatización de procesos para la transformación digital</p>
+</div>
+<div class="page-header"><h2 class="page-title">Unidad 5: Desarrollo de un Programa Completo</h2></div></header><div id="page-content-20260324203214700MBK" class="page-content"> <article id="20260330150329223GUU" class="box"> <header class="box-head no-icon"> <h1 class="box-title">Texto</h1>
+<button class="box-toggle box-toggle-on" title="Ocultar/Mostrar contenido"> <span>Ocultar/Mostrar contenido</span></button></header><div class="box-content"> <div id="2026033015032922057O" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json"><div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><style>
+    @keyframes fadeInSlideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes subtlePulse {
+      0% { box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+      50% { box-shadow: 0 8px 25px rgba(39, 201, 63, 0.4); } /* Pulso verde para denotar finalización */
+      100% { box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+    }
+    .fade-in-section {
+      animation: fadeInSlideUp 0.8s ease-out forwards;
+      opacity: 0;
+    }
+    .code-pulse-success {
+      animation: subtlePulse 3s infinite ease-in-out;
+    }
+    .task-item:hover {
+      background-color: #f1f5f9 !important;
+      border-color: #11998e !important;
+      transform: translateX(5px);
+      transition: all 0.3s ease;
+    }
+    .link-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+  </style>
+<div class="main-wrapper" style="font-family: 'Poppins', sans-serif; color: #333; max-width: 900px; margin: auto;">
+<div class="main-wrapper" style="font-family: 'Poppins', sans-serif; color: #333; max-width: 900px; margin: auto;">
+<div class="fade-in-section" style="background: linear-gradient(135deg, #1a2a6c 0%, #11998e 50%, #38ef7d 100%); color: white; padding: 30px; border-radius: 15px; margin-bottom: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.15); animation-delay: 0.1s;">
+<h1 style="margin: 0; font-size: 1.8em; letter-spacing: 1px;">UNIDAD 5</h1>
+<p style="margin: 5px 0 0; opacity: 0.9; font-weight: 300;">Desarrollo de un Programa Completo</p>
+</div>
+<div class="fade-in-section" style="background: #ffffff; padding: 25px; border-radius: 12px; border-left: 5px solid #11998e; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 30px; animation-delay: 0.2s;">
+<h3 style="color: #1a2a6c; margin-top: 0;">Integrando el conocimiento 🧩</h3>
+<p style="text-align: justify; line-height: 1.6;">Es el momento de unir las variables, los tipos de datos y el flujo de control. Un programa completo interactúa con el usuario, procesa la información y devuelve un resultado útil.</p>
+<div style="text-align: center; margin: 20px 0;"><span style="font-size: 2em;">📥 Entrada ➡️ ⚙️ Proceso ➡️ 📤 Salida</span></div>
+<h4 style="color: #1a2a6c; margin-bottom: 10px;">Ejemplo: Calculadora Básica</h4>
+<div class="code-pulse-success" style="background-color: #1e1e1e; border-radius: 10px; padding: 20px; position: relative; margin-top: 10px;">
+<div style="display: flex; gap: 8px; margin-bottom: 15px;">
+<div style="width: 12px; height: 12px; background: #ff5f56; border-radius: 50%;"><br></div>
+<div style="width: 12px; height: 12px; background: #ffbd2e; border-radius: 50%;"><br></div>
+<div style="width: 12px; height: 12px; background: #27c93f; border-radius: 50%;"><br></div>
+</div>
+<code style="color: #d4d4d4; font-family: 'Courier New', Courier, monospace; line-height: 1.6; display: block;">
+        <span style="color: #6a9955;"># Solicitud de datos (Entrada)</span><br>
+        <span style="color: #9cdcfe;">a</span> = <span style="color: #4ec9b0;">int</span>(<span style="color: #dcdcaa;">input</span>(<span style="color: #ce9178;">"Número 1: "</span>))<br>
+        <span style="color: #9cdcfe;">b</span> = <span style="color: #4ec9b0;">int</span>(<span style="color: #dcdcaa;">input</span>(<span style="color: #ce9178;">"Número 2: "</span>))<br><br>
+        
+        <span style="color: #6a9955;"># Lógica (Proceso)</span><br>
+        <span style="color: #9cdcfe;">suma</span> = <span style="color: #9cdcfe;">a</span> + <span style="color: #9cdcfe;">b</span><br><br>
+        
+        <span style="color: #6a9955;"># Impresión (Salida)</span><br>
+        <span style="color: #dcdcaa;">print</span>(<span style="color: #ce9178;">"Resultado:"</span>, <span style="color: #9cdcfe;">suma</span>)
+      </code></div>
+</div>
+<div class="fade-in-section" style="text-align: center; margin-bottom: 30px; animation-delay: 0.4s;">
+<h4 style="color: #1a2a6c; border-bottom: 2px solid #eee; padding-bottom: 10px; display: inline-block;">🛠️ Herramientas para tu Proyecto</h4>
+<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-top: 15px;"><a href="https://docs.python.org/es/3/library/functions.html#input" target="_blank" class="link-btn" style="background: #1a2a6c; color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: 0.3s; display: flex; align-items: center; gap: 8px;" rel="noopener"> <span>⌨️ Función input()</span> </a> <a href="https://www.w3schools.com/python/python_user_input.asp" target="_blank" class="link-btn" style="background: #f7a82a; color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: 0.3s; display: flex; align-items: center; gap: 8px;" rel="noopener"> <span>📊 Guía de Entradas (W3)</span> </a> <a href="https://realpython.com/python-first-steps/" target="_blank" class="link-btn" style="background: #11998e; color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: 0.3s; display: flex; align-items: center; gap: 8px;" rel="noopener"> <span>🚀 Tu Primer Programa</span> </a></div>
+</div>
+<div class="fade-in-section" style="background: #fdf6e3; border: 2px dashed #11998e; padding: 25px; border-radius: 15px; margin-bottom: 30px; animation-delay: 0.6s;">
+<div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+<div style="background: #11998e; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5em; box-shadow: 0 4px 10px rgba(17,153,142,0.4);">🏆</div>
+<h3 style="margin: 0; color: #0d7a71; font-size: 1.4em;">Actividad Final: Proyecto Integrador</h3>
+</div>
+<p style="margin-bottom: 20px; font-weight: 500; color: #4a5568;">Desarrolla un sistema de validación de usuarios. Tu código debe cumplir estrictamente con los siguientes requerimientos:</p>
+<div style="display: flex; flex-direction: column; gap: 12px; background: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+<div class="task-item" style="background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #e1e8ed; display: flex; align-items: center; gap: 15px;"><span style="color: #11998e; font-size: 1.5em;">👤</span> <span style="font-weight: bold; color: #1a2a6c;">Pedir nombre</span> <span style="margin-left: auto; color: #718096; font-size: 0.9em;">(Usa la función str / input)</span></div>
+<div class="task-item" style="background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #e1e8ed; display: flex; align-items: center; gap: 15px;"><span style="color: #11998e; font-size: 1.5em;">🎂</span> <span style="font-weight: bold; color: #1a2a6c;">Pedir edad</span> <span style="margin-left: auto; color: #718096; font-size: 0.9em;">(Recuerda convertir a int)</span></div>
+<div class="task-item" style="background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #e1e8ed; display: flex; align-items: center; gap: 15px;"><span style="color: #11998e; font-size: 1.5em;">⚖️</span> <span style="font-weight: bold; color: #1a2a6c;">Evaluar e indicar si es mayor o menor de edad</span> <span style="margin-left: auto; color: #718096; font-size: 0.9em;">(Estructura if / else)</span></div>
+</div>
+<div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid #e2e8f0;">
+<p style="font-size: 0.9em; font-weight: 600; color: #1a2a6c; margin-bottom: 10px;">💻 Resultado esperado en consola:</p>
+<div style="background: #000000; color: #00ff00; font-family: monospace; padding: 15px; border-radius: 5px; font-size: 0.9em;">&gt; Ingresa tu nombre: Carlos<br>&gt; Ingresa tu edad: 20<br>&gt; Hola Carlos, tienes 20 años. Eres MAYOR de edad.<br><span class="blinking-cursor" style="animation: blink 1s step-end infinite;">_</span></div>
+</div>
+</div>
+</div>
+</div>
+<style>@keyframes blink { 50% { opacity: 0; } }</style><p class="clearfix"></p></div>
+</div></article>
+
+<!-- iDevice: Zona de Retos Modo Debug -->
+<article id="idevice-modo-debug" class="box"> 
+    <header class="box-head"> 
+        <div class="box-icon exe-icon"> 
+            <img src="../theme/icons/guide.png" alt="">
+        </div>
+        <h1 class="box-title">🚨 Zona de Retos: Modo Debug</h1>
+        <button class="box-toggle box-toggle-on" title="Ocultar/Mostrar contenido"> <span>Ocultar/Mostrar contenido</span></button>
+    </header>
+    
+    <div class="box-content">
+        <p style="text-align: justify; line-height: 1.6; margin-bottom: 25px;">
+            Un excelente programador es, ante todo, un analista de código roto. A continuación, tienes **3 retos lógicos** con bloques de código de Python que contienen errores habituales de compilación. Identifica el error, haz tu diagnóstico y comprueba tu solución.
+        </p>
+
+        <!-- Reto 1 -->
+        <div class="debug-card">
+            <h3 class="debug-title">🚨 RETO 1: Bucle roto e indentación errónea</h3>
+            <p style="color: #4a5568; margin: 0 0 10px; font-size: 0.95em;">El siguiente script debería iterar del 1 al 5 e imprimir si cada número es par o impar, pero presenta múltiples fallos:</p>
+            
+            <div class="debug-editor">
+for i in range(1, 6)
+    if i % 2 = 0:
+    print("El número " + i + " es par")
+    else:
+        print("El número " + i + " es impar")
+            </div>
+
+            <p style="font-weight: 600; color: #2d3748; margin-bottom: 10px;">¿Qué errores graves impiden la ejecución de este código? (Selecciona todas las que apliquen):</p>
+            <ul class="debug-options" id="q1-options">
+                <li class="debug-opt-item" onclick="toggleOption(this)">
+                    <div class="debug-opt-checkbox">✓</div>
+                    <span>Falta el carácter dos puntos (:) al declarar el ciclo <code>for</code>.</span>
+                </li>
+                <li class="debug-opt-item" onclick="toggleOption(this)">
+                    <div class="debug-opt-checkbox">✓</div>
+                    <span>El condicional utiliza el operador de asignación simple <code>=</code> en lugar del operador de comparación relacional <code>==</code>.</span>
+                </li>
+                <li class="debug-opt-item" onclick="toggleOption(this)">
+                    <div class="debug-opt-checkbox">✓</div>
+                    <span>La línea del primer <code>print</code> tiene un error de indentación (no está dentro del bloque del <code>if</code>).</span>
+                </li>
+                <li class="debug-opt-item" onclick="toggleOption(this)">
+                    <div class="debug-opt-checkbox">✓</div>
+                    <span>Intentar concatenar una cadena con el entero <code>i</code> causará un <code>TypeError</code> (debe usarse <code>str(i)</code> o un f-string).</span>
+                </li>
+            </ul>
+            
+            <button class="debug-btn" onclick="checkDebugChallenge(1)">Depurar Código 🛠️</button>
+            <div class="debug-feedback" id="q1-feedback"></div>
+        </div>
+
+        <!-- Reto 2 -->
+        <div class="debug-card">
+            <h3 class="debug-title" style="color: #d35400;">🚨 RETO 2: Error de Tipos (TypeError)</h3>
+            <p style="color: #4a5568; margin: 0 0 10px; font-size: 0.95em;">El siguiente programa le solicita la edad al usuario para verificar si cumple la mayoría de edad laboral, pero arroja un error al ingresar un número:</p>
+            
+            <div class="debug-editor">
+edad = input("Ingresa tu edad: ")
+if edad >= 18:
+    print("Acceso concedido al sistema técnico")
+else:
+    print("Acceso denegado: requieres ser mayor de edad")
+            </div>
+
+            <p style="font-weight: 600; color: #2d3748; margin-bottom: 10px;">¿Por qué fallará este programa de forma catastrófica al evaluar la edad?</p>
+            <ul class="debug-options" id="q2-options">
+                <li class="debug-opt-item" onclick="selectSingleOption('q2-options', this)">
+                    <div class="debug-opt-checkbox">✓</div>
+                    <span>La función <code>input()</code> retorna texto (string). Comparar un string con el entero <code>18</code> da un <code>TypeError</code>. Falta castear la entrada con <code>int()</code>.</span>
+                </li>
+                <li class="debug-opt-item" onclick="selectSingleOption('q2-options', this)">
+                    <div class="debug-opt-checkbox">✓</div>
+                    <span>La variable <code>edad</code> no está declarada de forma explícita con su tipo de datos al principio del programa.</span>
+                </li>
+                <li class="debug-opt-item" onclick="selectSingleOption('q2-options', this)">
+                    <div class="debug-opt-checkbox">✓</div>
+                    <span>Las comillas del comando <code>print</code> están mal cerradas y generan un SyntaxError en la consola.</span>
+                </li>
+            </ul>
+            
+            <button class="debug-btn" onclick="checkDebugChallenge(2)">Depurar Código 🛠️</button>
+            <div class="debug-feedback" id="q2-feedback"></div>
+        </div>
+
+        <!-- Reto 3 -->
+        <div class="debug-card" style="border-color: #d69e2e; background: #fefcbf;">
+            <h3 class="debug-title" style="color: #b7791f;">🚨 RETO 3: Ámbito de Variables (NameError)</h3>
+            <p style="color: #4a5568; margin: 0 0 10px; font-size: 0.95em;">Este código define una función para calcular el área de un componente tecnológico, pero el intérprete se detiene al intentar imprimir el resultado:</p>
+            
+            <div class="debug-editor">
+def calcular_area(base, altura):
+    area = base * altura
+    return area
+
+print("El área resultante es:", area)
+            </div>
+
+            <p style="font-weight: 600; color: #2d3748; margin-bottom: 10px;">¿Qué error informará la terminal de Python y por qué?</p>
+            <ul class="debug-options" id="q3-options">
+                <li class="debug-opt-item" onclick="selectSingleOption('q3-options', this)">
+                    <div class="debug-opt-checkbox">✓</div>
+                    <span><code>TypeError</code> en el <code>print</code> porque no se pueden concatenar textos con áreas matemáticas.</span>
+                </li>
+                <li class="debug-opt-item" onclick="selectSingleOption('q3-options', this)">
+                    <div class="debug-opt-checkbox">✓</div>
+                    <span><code>NameError</code> porque <code>area</code> es una variable de ámbito local dentro de la función y no existe en el contexto global desde el que es invocada.</span>
+                </li>
+                <li class="debug-opt-item" onclick="selectSingleOption('q3-options', this)">
+                    <div class="debug-opt-checkbox">✓</div>
+                    <span><code>SyntaxError</code> porque la palabra reservada <code>return</code> no puede retornar variables directamente.</span>
+                </li>
+            </ul>
+            
+            <button class="debug-btn" onclick="checkDebugChallenge(3)">Depurar Código 🛠️</button>
+            <div class="debug-feedback" id="q3-feedback"></div>
+        </div>
+
+    </div>
+</article>
+
+</div></main><div class="nav-buttons"> <a href="../html/unidad-4-estructuras-de-control.html" title="Anterior" class="nav-button nav-button-left"> <span>Anterior</span></a><a href="../html/conclusiones-y-zona-de-retos.html" title="Siguiente" class="nav-button nav-button-right"> <span>Siguiente</span></a>
+</div>
+<footer id="siteFooter"><div id="siteFooterContent"> <div id="packageLicense" class="cc cc-by-sa"> <p> <span class="license-label">Licencia: </span><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="license">creative commons: attribution - share alike 4.0</a></p>
+</div>
+<div id="siteUserFooter"> <div>
+
+
+
+<div id="progress-container">
+    
+<div id="progress-bar"></div>
+</div>
+<div style="text-align: center; padding: 20px; border-top: 1px solid #eee; margin-top: 50px;">
+    
+    
+<p style="font-weight: 600; color: #555;">Juan Felipe Caicedo Tabio</p>
+<p style="font-size: 0.8em; color: #888;">Trabajo de Grado - Introducción a Python - 2026</p>
+</div>
+<script>\u000a    // L\u00f3gica para la barra de progreso al hacer scroll\u000a    window.onscroll = function() {\u000a        var winScroll = document.body.scrollTop || document.documentElement.scrollTop;\u000a        var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;\u000a        var scrolled = (winScroll / height) * 100;\u000a        document.getElementById("progress-bar").style.width = scrolled + "%";\u000a    };\u000a</script>
+</div>
+</div>
+</div></footer>
+</div>
+<p id="made-with-eXe"> <a href="https://exelearning.net/" target="_blank" rel="noopener"> <span>Creado con eXeLearning <span>(nueva ventana)</span></span></a></p>
+<!-- Lógica JavaScript del Módulo -->
+<script>
+    // Funciones del Modo Debug
+    function toggleOption(element) {
+        element.classList.toggle("selected");
+    }
+
+    function selectSingleOption(containerId, element) {
+        var options = document.getElementById(containerId).getElementsByTagName("li");
+        for (var i = 0; i < options.length; i++) {
+            options[i].classList.remove("selected");
+        }
+        element.classList.add("selected");
+    }
+
+    function checkDebugChallenge(challengeNum) {
+        if (challengeNum === 1) {
+            var options = document.getElementById("q1-options").getElementsByTagName("li");
+            // Todas las opciones son verdaderas
+            var allSelected = true;
+            for (var i = 0; i < options.length; i++) {
+                if (!options[i].classList.contains("selected")) {
+                    allSelected = false;
+                }
+            }
+            
+            var feedback = document.getElementById("q1-feedback");
+            feedback.style.display = "block";
+            
+            if (allSelected) {
+                feedback.className = "debug-feedback success";
+                feedback.innerHTML = "🎉 <strong>¡Excelente diagnóstico técnico!</strong> Has identificado todos los bugs. En efecto: 1) Falta el `:` al declarar el <code>for</code>. 2) Se debe usar <code>==</code> para evaluar la igualdad. 3) El primer <code>print</code> debe estar indentado con 8 espacios o un tabulador extra. 4) Concatenar texto con el entero <code>i</code> causará un TypeError crítico, solucionado con <code>str(i)</code> o un f-string.";
+            } else {
+                feedback.className = "debug-feedback error";
+                feedback.innerHTML = "❌ <strong>Diagnóstico incompleto o incorrecto.</strong> Revisa bien el código. El desarrollador cometió más de un error. ¡Todos los puntos listados son fallas reales de compilación en este código! Marca todas las opciones y vuelve a depurar.";
+            }
+        } else if (challengeNum === 2) {
+            var options = document.getElementById("q2-options").getElementsByTagName("li");
+            var selectedIdx = -1;
+            for (var i = 0; i < options.length; i++) {
+                if (options[i].classList.contains("selected")) {
+                    selectedIdx = i;
+                }
+            }
+            
+            var feedback = document.getElementById("q2-feedback");
+            feedback.style.display = "block";
+            
+            if (selectedIdx === 0) {
+                feedback.className = "debug-feedback success";
+                feedback.innerHTML = "🎉 <strong>¡Correcto!</strong> En Python, <code>input()</code> siempre captura la entrada como tipo texto (String). Al intentar compararla con el número entero <code>18</code> mediante el operador <code>>=</code>, el intérprete se detiene y reporta un <code>TypeError: '>=' not supported between instances of 'str' and 'int'</code>. La solución correcta es convertir a entero: <code>edad = int(input(\"...\"))</code>.";
+            } else if (selectedIdx === -1) {
+                alert("Por favor, selecciona una opción antes de depurar.");
+                feedback.style.display = "none";
+            } else {
+                feedback.className = "debug-feedback error";
+                feedback.innerHTML = "❌ <strong>Respuesta incorrecta.</strong> Analiza la compatibilidad de tipos de datos. Recuerda que Python no requiere declaración previa de variables globales y las comillas de los print son completamente válidas. El problema radica en la comparación entre un texto capturado por consola y un entero matemático.";
+            }
+        } else if (challengeNum === 3) {
+            var options = document.getElementById("q3-options").getElementsByTagName("li");
+            var selectedIdx = -1;
+            for (var i = 0; i < options.length; i++) {
+                if (options[i].classList.contains("selected")) {
+                    selectedIdx = i;
+                }
+            }
+            
+            var feedback = document.getElementById("q3-feedback");
+            feedback.style.display = "block";
+            
+            if (selectedIdx === 1) {
+                feedback.className = "debug-feedback success";
+                feedback.innerHTML = "🎉 <strong>¡Excepcional! Compilador Mental al 100%.</strong> Has identificado que la variable <code>area</code> se crea dentro del bloque de la función, por lo cual tiene un <strong>ámbito local</strong>. Al finalizar la ejecución de la función, esa variable se destruye. Intentar acceder a ella de forma directa en el flujo principal arrojará un <code>NameError: name 'area' is not defined</code>. Para solucionarlo, deberíamos almacenar el retorno en el flujo global: <code>mi_area = calcular_area(5, 10)</code>.";
+            } else if (selectedIdx === -1) {
+                alert("Por favor, selecciona una opción antes de depurar.");
+                feedback.style.display = "none";
+            } else {
+                feedback.className = "debug-feedback error";
+                feedback.innerHTML = "❌ <strong>Fallo en la depuración.</strong> Observa las variables dentro de la función. El comando de retorno y la concatenación de la tupla del <code>print</code> son válidos en Python. El bug radica en los límites y el alcance de las variables locales vs globales.";
+            }
+        }
+    }
+</script>
+</body>
+</html>

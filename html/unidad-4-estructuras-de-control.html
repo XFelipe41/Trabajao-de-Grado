@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-node-20260324203148576KML">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v3.0.2">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="license" type="text/html" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<title>Unidad 4: Estructuras de Control | Introducción a la Programación y Uso de Python</title>
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/text/text.js"> </script><script src="../idevices/scrambled-list/scrambled-list.js"> </script><link rel="stylesheet" href="../idevices/text/text.css">
+<link rel="stylesheet" href="../idevices/scrambled-list/scrambled-list.css">
+<link rel="stylesheet" href="../content/css/base.css">
+<script src="../theme/style.js"> </script><link rel="stylesheet" href="../theme/style.css">
+<link rel="icon" type="image/x-icon" href="../libs/favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&amp;display=swap" rel="stylesheet">
+<style>
+    /* Tipografía Profesional */
+    body {
+        font-family: 'Poppins', sans-serif !important;
+        color: #333;
+    }
+
+    /* Barra de progreso de lectura superior */
+    #progress-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: transparent;
+        z-index: 9999;
+    }
+    #progress-bar {
+        height: 5px;
+        background: linear-gradient(90deg, #2ecc71, #3498db);
+        width: 0%;
+    }
+
+    /* Estilo de Tarjetas para los iDevices */
+    .iDevice {
+        border: none !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+        border-radius: 12px !important;
+        overflow: hidden;
+        margin-bottom: 30px !important;
+        transition: transform 0.3s ease;
+    }
+    .iDevice:hover {
+        transform: translateY(-5px);
+    }
+
+    /* Botones Modernos */
+    .iDevice_button, .feedback-button {
+        background-color: #3498db !important;
+        border-radius: 25px !important;
+        padding: 8px 20px !important;
+        color: white !important;
+        text-transform: uppercase;
+        font-weight: 600;
+        border: none !important;
+    }
+
+    /* Compilador Mental */
+    .comp-panel {
+        background: #0f172a;
+        color: white;
+        border-radius: 12px;
+        border: 1px solid #1e293b;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    .comp-header {
+        background: #1e293b;
+        padding: 12px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .comp-dots {
+        display: flex;
+        gap: 6px;
+    }
+    .comp-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+    }
+    .comp-body {
+        padding: 20px;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    @media(min-width: 768px) {
+        .comp-body {
+            grid-template-columns: 1.2fr 1fr;
+        }
+    }
+    .comp-instructions {
+        font-size: 0.9em;
+        color: #94a3b8;
+        margin-bottom: 15px;
+    }
+    .block-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    .code-block-item {
+        background: #1e293b;
+        border: 1px solid #334155;
+        border-radius: 8px;
+        padding: 10px 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.9em;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+    .code-block-text {
+        white-space: pre;
+        color: #e2e8f0;
+        overflow-x: auto;
+        margin-right: 10px;
+    }
+    .code-block-controls {
+        display: flex;
+        gap: 5px;
+        flex-shrink: 0;
+    }
+    .btn-arrow {
+        background: #334155;
+        color: #94a3b8;
+        border: none;
+        width: 28px;
+        height: 28px;
+        border-radius: 4px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        transition: all 0.2s;
+    }
+    .btn-arrow:hover {
+        background: #475569;
+        color: white;
+    }
+    .terminal-window {
+        background: #090d16;
+        border: 1px solid #1e293b;
+        border-radius: 8px;
+        padding: 15px;
+        font-family: 'Courier Prime', monospace;
+        font-size: 0.85em;
+        color: #38ef7d;
+        min-height: 250px;
+        max-height: 350px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        box-shadow: inset 0 2px 8px rgba(0,0,0,0.5);
+    }
+    .terminal-line {
+        line-height: 1.6;
+        margin: 2px 0;
+        white-space: pre-wrap;
+    }
+    .terminal-line.error { color: #f87171; }
+    .terminal-line.info { color: #60a5fa; }
+    .terminal-line.success { color: #34d399; font-weight: bold; }
+    .btn-run {
+        background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%) !important;
+        border: none !important;
+        color: white !important;
+        font-weight: 600 !important;
+        padding: 10px 25px !important;
+        border-radius: 25px !important;
+        cursor: pointer;
+        width: 100%;
+        margin-top: 15px;
+        box-shadow: 0 4px 10px rgba(56, 239, 125, 0.3);
+        transition: all 0.3s;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .btn-run:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(56, 239, 125, 0.5);
+    }
+</style>
+</head>
+<body class="exe-export exe-web-site" lang="es">
+<script>document.body.className+=" js"</script><div class="exe-content exe-export pre-js siteNav-hidden"> <nav id="siteNav"> <ul> <li> <a href="../index.html" class="main-node no-ch">Introducción al Curso Programación y Uso de Python </a>
+</li>
+<li> <a href="../html/unidad-1-introduccion-a-la-programacion.html" class="no-ch">Unidad 1: Introducción a la Programación</a>
+</li>
+<li> <a href="../html/unidad-2-conceptos-basicos-de-python.html" class="no-ch">Unidad 2: Conceptos básicos de Python</a>
+</li>
+<li> <a href="../html/unidad-3-variables-y-tipos-de-datos.html" class="no-ch">Unidad 3: Variables y Tipos de Datos</a>
+</li>
+<li class="active"> <a href="../html/unidad-4-estructuras-de-control.html" class="active no-ch">Unidad 4: Estructuras de Control</a>
+</li>
+<li> <a href="../html/unidad-5-desarrollo-de-un-programa-completo.html" class="no-ch">Unidad 5: Desarrollo de un Programa Completo</a>
+</li>
+<li> <a href="../html/conclusiones-y-zona-de-retos.html" class="no-ch">Conclusiones</a>
+</li>
+</ul></nav><main id="20260324203148576KML" class="page"> <header id="header-20260324203148576KML" class="main-header"> <div class="package-header">
+<h1 class="package-title">Introducción a la Programación y Uso de Python</h1>
+<p class="package-subtitle">Fundamentos prácticos y automatización de procesos para la transformación digital</p>
+</div>
+<div class="page-header"><h2 class="page-title">Unidad 4: Estructuras de Control</h2></div></header><div id="page-content-20260324203148576KML" class="page-content"> <article id="20260330145235328TWJ" class="box"> <header class="box-head no-icon"> <h1 class="box-title">Estructuras de Contol</h1>
+<button class="box-toggle box-toggle-on" title="Ocultar/Mostrar contenido"> <span>Ocultar/Mostrar contenido</span></button></header><div class="box-content"> <div id="20260330145235325LGY" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json"><div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><style>
+    @keyframes fadeInSlideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes subtlePulse {
+      0% { box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+      50% { box-shadow: 0 8px 25px rgba(178, 31, 31, 0.4); }
+      100% { box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+    }
+    .fade-in-section {
+      animation: fadeInSlideUp 0.8s ease-out forwards;
+      opacity: 0;
+    }
+    .code-pulse {
+      animation: subtlePulse 3s infinite ease-in-out;
+    }
+    .drag-item:hover {
+      background-color: #f1f5f9 !important;
+      border-color: #b21f1f !important;
+      transform: translateX(5px) scale(1.01);
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .link-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+  </style>
+<div class="main-wrapper" style="font-family: 'Poppins', sans-serif; color: #333; max-width: 900px; margin: auto;">
+<div class="fade-in-section" style="background: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%); color: white; padding: 30px; border-radius: 15px; margin-bottom: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.15); animation-delay: 0.1s;">
+<h1 style="margin: 0; font-size: 1.8em; letter-spacing: 1px;">UNIDAD 4</h1>
+<p style="margin: 5px 0 0; opacity: 0.9; font-weight: 300;">Estructuras de Control: Flujo y Lógica</p>
+</div>
+<div class="fade-in-section" style="background: #ffffff; padding: 25px; border-radius: 12px; border-left: 5px solid #1a2a6c; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 30px; animation-delay: 0.2s;">
+<h3 style="color: #1a2a6c; margin-top: 0;">Condicionales 🔀</h3>
+<p style="text-align: justify; line-height: 1.6;">Las estructuras condicionales (como <code>if</code>, <code>elif</code> y <code>else</code>) permiten a tu programa tomar decisiones. Evalúan una condición (que resulta en verdadero o falso) y ejecutan un bloque de código u otro dependiendo del resultado.</p>
+<div style="text-align: center; margin: 20px 0;"><br></div>
+<div class="code-pulse" style="background-color: #1e1e1e; border-radius: 10px; padding: 20px; position: relative; margin-top: 20px;">
+<div style="display: flex; gap: 8px; margin-bottom: 15px;">
+<div style="width: 12px; height: 12px; background: #ff5f56; border-radius: 50%;"><br></div>
+<div style="width: 12px; height: 12px; background: #ffbd2e; border-radius: 50%;"><br></div>
+<div style="width: 12px; height: 12px; background: #27c93f; border-radius: 50%;"><br></div>
+</div>
+<code style="color: #d4d4d4; font-family: 'Courier New', Courier, monospace; line-height: 1.6; display: block;">
+        <span style="color: #9cdcfe;">edad</span> = <span style="color: #b5cea8;">18</span><br><br>
+        <span style="color: #c586c0;">if</span> <span style="color: #9cdcfe;">edad</span> &gt;= <span style="color: #b5cea8;">18</span>:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #dcdcaa;">print</span>(<span style="color: #ce9178;">"Eres mayor de edad"</span>)
+      </code></div>
+</div>
+<div class="fade-in-section" style="background: #ffffff; padding: 25px; border-radius: 12px; border-left: 5px solid #fdbb2d; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 30px; animation-delay: 0.4s;">
+<h3 style="color: #1a2a6c; margin-top: 0;">Ciclos y Bucles 🔄</h3>
+<p style="text-align: justify; line-height: 1.6;">Los ciclos (como <code>for</code> y <code>while</code>) permiten repetir una serie de acciones o bloques de código múltiples veces. Son ideales para automatizar tareas repetitivas o recorrer listas de datos.</p>
+<div style="text-align: center; margin: 20px 0;"><br></div>
+<div style="background-color: #1e1e1e; border-radius: 10px; padding: 20px; position: relative; margin-top: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+<div style="display: flex; gap: 8px; margin-bottom: 15px;">
+<div style="width: 12px; height: 12px; background: #ff5f56; border-radius: 50%;"><br></div>
+<div style="width: 12px; height: 12px; background: #ffbd2e; border-radius: 50%;"><br></div>
+<div style="width: 12px; height: 12px; background: #27c93f; border-radius: 50%;"><br></div>
+</div>
+<code style="color: #d4d4d4; font-family: 'Courier New', Courier, monospace; line-height: 1.6; display: block;">
+        <span style="color: #6a9955;"># Este ciclo imprimirá los números del 0 al 4</span><br>
+        <span style="color: #c586c0;">for</span> <span style="color: #9cdcfe;">i</span> <span style="color: #c586c0;">in</span> <span style="color: #dcdcaa;">range</span>(<span style="color: #b5cea8;">5</span>):<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #dcdcaa;">print</span>(<span style="color: #9cdcfe;">i</span>)
+      </code></div>
+</div>
+<div class="fade-in-section" style="text-align: center; margin-bottom: 30px; animation-delay: 0.6s;">
+<h4 style="color: #1a2a6c; border-bottom: 2px solid #eee; padding-bottom: 10px; display: inline-block;">📚 Complementa tu aprendizaje</h4>
+<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-top: 15px;"><a href="https://docs.python.org/es/3/tutorial/controlflow.html" target="_blank" class="link-btn" style="background: #1a2a6c; color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: 0.3s; display: flex; align-items: center; gap: 8px;" rel="noopener"> <span>🐍 Documentación Oficial</span> </a> <a href="https://www.w3schools.com/python/python_conditions.asp" target="_blank" class="link-btn" style="background: #04aa6d; color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: 0.3s; display: flex; align-items: center; gap: 8px;" rel="noopener"> <span>🟢 W3Schools: If...Else</span> </a> <a href="https://realpython.com/python-for-loop/" target="_blank" class="link-btn" style="background: #b21f1f; color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: 0.3s; display: flex; align-items: center; gap: 8px;" rel="noopener"> <span>🔥 Real Python: Bucles For</span> </a></div>
+</div>
+</div><p class="clearfix"></p></div>
+            </div></div></div></div>
+</div></article><article id="20260330145944540LX1" class="box"> <header class="box-head no-icon"> <h1 class="box-title">Lista desordenada</h1>
+<button class="box-toggle box-toggle-on" title="Ocultar/Mostrar contenido"> <span>Ocultar/Mostrar contenido</span></button></header><div class="box-content"> <div id="20260330145944537744" class="idevice_node scrambled-list" data-idevice-path="../idevices/scrambled-list/" data-idevice-type="scrambled-list" data-idevice-component-type="json" data-idevice-json-data='{"typeGame":"ScrambledList","instructions":"&lt;p&gt;🧩 Actividad: Ordenar el algoritmo&lt;/p&gt;\n&lt;p&gt;Imagina que debes programar un sistema que solo deje entrar a mayores de edad. Ordena mentalmente o arrastra los siguientes pasos en su secuencia lógica (1, 2 y 3).&lt;/p&gt;","textAfter":"","afterElement":"","options":["Pedir edad al usuario","Verificar edad","Mostrar mensaje"],"time":0,"buttonText":"Comprobar","rightText":"¡Correcto!","wrongText":"No es correcto... Respuesta correcta:","isScorm":0,"textButtonScorm":"Guardar la puntuación","repeatActivity":true,"weighted":100,"evaluation":false,"evaluationID":"20260325010319SJDVSU","main":"sl20260330145944537744","msgs":{"msgScoreScorm":"La puntuación no se puede guardar porque esta página no forma parte  de un paquete SCORM.","msgYouScore":"Su puntuación","msgScore":"Puntuación","msgWeight":"Peso","msgYouLastScore":"La última puntuación guardada es","msgOnlySaveScore":"¡Solo puede guardar la puntuación una vez!","msgOnlySave":"Solo puede guardar una vez","msgOnlySaveAuto":"Su puntuación se guardará después de cada pregunta. Solo puede jugar una vez.","msgSaveAuto":"Su puntuación se guardará automáticamente después de cada pregunta.","msgSeveralScore":"Puede guardar la puntuación tantas veces como quiera","msgPlaySeveralTimes":"Puede realizar esta actividad cuantas veces quiera","msgActityComply":"Ya ha realizado esta actividad.","msgUncompletedActivity":"Actividad no completada","msgSuccessfulActivity":"Actividad superada. Puntuación: %s","msgUnsuccessfulActivity":"Actividad no superada. Puntuación: %s","msgTypeGame":"Lista desordenada","msgStartGame":"Pulse aquí para empezar","msgSubmit":"Enviar","msgPlayStart":"Pulse aquí para jugar","msgTime":"Tiempo por pregunta","msgCheck":"Comprobar","msgSaveScore":"Guardar la puntuación","msgTestFailed":"No has superado la prueba. Inténtalo de nuevo"},"scorerp":0,"idevice":"idevice_node","showSolutions":true,"id":"20260330145944537744"}' data-idevice-template='&lt;div class="exe-sortableList" id="sl{idList}" scorm={scorm}&gt;&lt;div class="game-evaluation-ids js-hidden" data-id="{ideviceID}" data-evaluationb="{evaluation}" data-evaluationid="{evaluationID}"&gt;&lt;/div&gt;&lt;div class="exe-sortableList-instructions"&gt;{instructions}&lt;/div&gt;&lt;ul class="exe-sortableList-list"&gt;{optionsText}&lt;/ul&gt;&lt;div style="display:none"&gt;&lt;p class="exe-sortableList-buttonText"&gt;{buttonText}&lt;/p&gt;&lt;p class="exe-sortableList-rightText"&gt;{rightText}&lt;/p&gt;&lt;p class="exe-sortableList-wrongText"&gt;{wrongText}&lt;/p&gt;&lt;/div&gt;&lt;div class="exe-scorm-message"&gt;{scormMessage}&lt;/div&gt;{afterElement}&lt;/div&gt;'><div class="exe-sortableList" id="sl20260330145944537744" scorm=false><div class="game-evaluation-ids js-hidden" data-id="20260330145944537744" data-evaluationb="false" data-evaluationid="20260325010319SJDVSU"></div><div class="exe-sortableList-instructions"><p>🧩 Actividad: Ordenar el algoritmo</p>
+<p>Imagina que debes programar un sistema que solo deje entrar a mayores de edad. Ordena mentalmente o arrastra los siguientes pasos en su secuencia lógica (1, 2 y 3).</p></div><ul class="exe-sortableList-list"><li>Pedir edad al usuario</li><li>Verificar edad</li><li>Mostrar mensaje</li></ul><div style="display:none"><p class="exe-sortableList-buttonText">Comprobar</p><p class="exe-sortableList-rightText">¡Correcto!</p><p class="exe-sortableList-wrongText">No es correcto... Respuesta correcta:</p></div><div class="exe-scorm-message"></div></div></div>
+</div></article>
+
+<article id="idevice-compilador-mental" class="box">
+    <header class="box-head">
+        <div class="box-icon exe-icon">
+            <img src="../theme/icons/guide.png" alt="">
+        </div>
+        <h1 class="box-title">🧩 Compilador Mental: Ordena el Código</h1>
+        <button class="box-toggle box-toggle-on" title="Ocultar/Mostrar contenido"> <span>Ocultar/Mostrar contenido</span></button>
+    </header>
+    
+    <div class="box-content">
+        <p style="text-align: justify; line-height: 1.6; margin-bottom: 25px;">
+            ¡Pongamos a prueba tu lógica algorítmica! A continuación, tienes <strong>6 líneas de código en Python completamente desordenadas</strong>. Tu misión es ordenarlas de arriba hacia abajo para estructurar un programa funcional que pida el nombre y la edad del usuario, evalúe si es mayor de edad (18 años o más) e imprima un saludo personalizado.
+        </p>
+        
+        <div class="comp-panel">
+            <div class="comp-header">
+                <div class="comp-dots">
+                    <div class="comp-dot" style="background: #ff5f56;"></div>
+                    <div class="comp-dot" style="background: #ffbd2e;"></div>
+                    <div class="comp-dot" style="background: #27c93f;"></div>
+                </div>
+                <span style="font-size: 0.85em; color: #94a3b8; font-weight: 600;">mental_compiler.py</span>
+                <span style="width: 30px;"></span>
+            </div>
+            
+            <div class="comp-body">
+                <div>
+                    <div class="comp-instructions">👉 Usa las flechas 🔼 y 🔽 en cada bloque para reordenar las líneas de código:</div>
+                    <div class="block-list" id="codeBlocksContainer">
+                        <!-- Bloque c -->
+                        <div class="code-block-item" data-correct-id="c">
+                            <div class="code-block-text">if edad >= 18:</div>
+                            <div class="code-block-controls">
+                                <button class="btn-arrow" onclick="moveBlock(this, 'up')" title="Subir bloque">▲</button>
+                                <button class="btn-arrow" onclick="moveBlock(this, 'down')" title="Bajar bloque">▼</button>
+                            </div>
+                        </div>
+                        <!-- Bloque a -->
+                        <div class="code-block-item" data-correct-id="a">
+                            <div class="code-block-text">nombre = input("Ingresa tu nombre: ")</div>
+                            <div class="code-block-controls">
+                                <button class="btn-arrow" onclick="moveBlock(this, 'up')" title="Subir bloque">▲</button>
+                                <button class="btn-arrow" onclick="moveBlock(this, 'down')" title="Bajar bloque">▼</button>
+                            </div>
+                        </div>
+                        <!-- Bloque f -->
+                        <div class="code-block-item" data-correct-id="f">
+                            <div class="code-block-text">    print(f"Hola {nombre}, eres menor de edad")</div>
+                            <div class="code-block-controls">
+                                <button class="btn-arrow" onclick="moveBlock(this, 'up')" title="Subir bloque">▲</button>
+                                <button class="btn-arrow" onclick="moveBlock(this, 'down')" title="Bajar bloque">▼</button>
+                            </div>
+                        </div>
+                        <!-- Bloque d -->
+                        <div class="code-block-item" data-correct-id="d">
+                            <div class="code-block-text">    print(f"Hola {nombre}, eres mayor de edad")</div>
+                            <div class="code-block-controls">
+                                <button class="btn-arrow" onclick="moveBlock(this, 'up')" title="Subir bloque">▲</button>
+                                <button class="btn-arrow" onclick="moveBlock(this, 'down')" title="Bajar bloque">▼</button>
+                            </div>
+                        </div>
+                        <!-- Bloque b -->
+                        <div class="code-block-item" data-correct-id="b">
+                            <div class="code-block-text">edad = int(input("Ingresa tu edad: "))</div>
+                            <div class="code-block-controls">
+                                <button class="btn-arrow" onclick="moveBlock(this, 'up')" title="Subir bloque">▲</button>
+                                <button class="btn-arrow" onclick="moveBlock(this, 'down')" title="Bajar bloque">▼</button>
+                            </div>
+                        </div>
+                        <!-- Bloque e -->
+                        <div class="code-block-item" data-correct-id="e">
+                            <div class="code-block-text">else:</div>
+                            <div class="code-block-controls">
+                                <button class="btn-arrow" onclick="moveBlock(this, 'up')" title="Subir bloque">▲</button>
+                                <button class="btn-arrow" onclick="moveBlock(this, 'down')" title="Bajar bloque">▼</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn-run" onclick="runMentalCompiler()">Compilar y Ejecutar Código 🚀</button>
+                </div>
+                
+                <div>
+                    <div class="comp-instructions">💻 Consola de Salida del Sistema:</div>
+                    <div class="terminal-window" id="terminalConsole">
+                        <div class="terminal-line info"># Consola del Sistema de Python</div>
+                        <div class="terminal-line info"># El resultado de la ejecución aparecerá aquí al presionar el botón...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+</div></main><div class="nav-buttons"> <a href="../html/unidad-3-variables-y-tipos-de-datos.html" title="Anterior" class="nav-button nav-button-left"> <span>Anterior</span></a><a href="../html/unidad-5-desarrollo-de-un-programa-completo.html" title="Siguiente" class="nav-button nav-button-right"> <span>Siguiente</span></a>
+</div>
+<footer id="siteFooter"><div id="siteFooterContent"> <div id="packageLicense" class="cc cc-by-sa"> <p> <span class="license-label">Licencia: </span><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="license">creative commons: attribution - share alike 4.0</a></p>
+</div>
+<div id="siteUserFooter"> <div>
+
+
+
+<div id="progress-container">
+    
+<div id="progress-bar"></div>
+</div>
+<div style="text-align: center; padding: 20px; border-top: 1px solid #eee; margin-top: 50px;">
+    
+    
+<p style="font-weight: 600; color: #555;">Juan Felipe Caicedo Tabio</p>
+<p style="font-size: 0.8em; color: #888;">Trabajo de Grado - Introducción a Python - 2026</p>
+</div>
+<script>
+    // Lógica para la barra de progreso al hacer scroll
+    window.onscroll = function() {
+        var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        var scrolled = (winScroll / height) * 100;
+        document.getElementById("progress-bar").style.width = scrolled + "%";
+    };
+</script>
+<script>
+    // Funciones del Compilador Mental (Juego de Reordenar Bloques)
+    function moveBlock(button, direction) {
+        var block = button.closest(".code-block-item");
+        var container = document.getElementById("codeBlocksContainer");
+        
+        if (direction === 'up') {
+            var prev = block.previousElementSibling;
+            if (prev) {
+                container.insertBefore(block, prev);
+            }
+        } else if (direction === 'down') {
+            var next = block.nextElementSibling;
+            if (next) {
+                container.insertBefore(next, block);
+            }
+        }
+        
+        // Agregar pequeña animación de brillo en intercambio
+        block.style.borderColor = "#60a5fa";
+        setTimeout(function() {
+            block.style.borderColor = "#334155";
+        }, 300);
+    }
+
+    function runMentalCompiler() {
+        var container = document.getElementById("codeBlocksContainer");
+        var blocks = container.getElementsByClassName("code-block-item");
+        var terminal = document.getElementById("terminalConsole");
+        
+        // Limpiar terminal y mostrar animación inicial
+        terminal.innerHTML = "";
+        
+        var outputLines = [
+            { text: "$ python mental_compiler.py", class: "info" },
+            { text: "[LOG] Iniciando compilación de lógica secuencial...", class: "info" },
+            { text: "[LOG] Validando correspondencia sintáctica...", class: "info" }
+        ];
+
+        printTerminalLinesSequential(outputLines, 0, function() {
+            // Verificar el orden correcto
+            // El orden correcto por ID de bloque es:
+            // 1. a: nombre = input(...)
+            // 2. b: edad = int(input(...))
+            // 3. c: if edad >= 18:
+            // 4. d:     print(f"Hola {nombre}, eres mayor de edad")
+            // 5. e: else:
+            // 6. f:     print(f"Hola {nombre}, eres menor de edad")
+            var currentOrder = "";
+            for (var i = 0; i < blocks.length; i++) {
+                currentOrder += blocks[i].getAttribute("data-correct-id");
+            }
+            
+            var expectedOrder = "abcdef";
+            
+            setTimeout(function() {
+                if (currentOrder === expectedOrder) {
+                    var successLines = [
+                        { text: "[✔] ¡SINTAXIS VALIDADA CON ÉXITO!", class: "success" },
+                        { text: "[LOG] Ejecutando algoritmo en máquina virtual local...", class: "info" },
+                        { text: "--------------------------------------------------", class: "" },
+                        { text: "> Ingresa tu nombre: Estudiante Técnico", class: "" },
+                        { text: "> Ingresa tu edad: 21", class: "" },
+                        { text: "Hola Estudiante Técnico, eres mayor de edad", class: "" },
+                        { text: "--------------------------------------------------", class: "" },
+                        { text: "🎉 ¡FELICIDADES! Compilación finalizada exitosamente.", class: "success" },
+                        { text: "Has programado la secuencia lógica de manera impecable.", class: "success" }
+                    ];
+                    printTerminalLinesSequential(successLines, 0, null);
+                } else {
+                    // Dar un error dinámico según qué esté mal o genérico
+                    // Si 'if' está antes de 'nombre' o 'edad', etc.
+                    var errorMsg = "";
+                    var errorClass = "error";
+                    
+                    if (currentOrder.indexOf("d") < currentOrder.indexOf("c")) {
+                        errorMsg = "IndentationError: unexpected indent. La línea de impresión del bloque verdadero ocurrió antes de declarar la estructura condicional 'if'.";
+                    } else if (currentOrder.indexOf("f") < currentOrder.indexOf("e")) {
+                        errorMsg = "IndentationError: unexpected indent. La línea de impresión del bloque falso ocurrió antes de declarar la estructura 'else'.";
+                    } else if (currentOrder.indexOf("c") < currentOrder.indexOf("a") || currentOrder.indexOf("c") < currentOrder.indexOf("b")) {
+                        errorMsg = "NameError: name 'edad' or 'nombre' is not defined. Has evaluado la condición del 'if' antes de capturar el nombre y la edad del estudiante.";
+                    } else {
+                        errorMsg = "SyntaxError: invalid syntax. El flujo secuencial del programa no es congruente con la ejecución de bloques de Python.";
+                    }
+
+                    var errorLines = [
+                        { text: "[❌] ¡ERROR DE COMPILACIÓN DETECTADO!", class: "error" },
+                        { text: "Traceback (most recent call last):", class: "error" },
+                        { text: "  File \"mental_compiler.py\", line " + Math.floor(Math.random() * 5 + 1) + ", in <module>", class: "error" },
+                        { text: "    " + errorMsg, class: "error" },
+                        { text: "--------------------------------------------------", class: "" },
+                        { text: "💡 Pista: Recuerda la secuencia lógica:", class: "info" },
+                        { text: "   1) Pedir nombre, 2) Pedir edad, 3) Declarar 'if', 4) Imprimir éxito, 5) Declarar 'else', 6) Imprimir menor de edad.", class: "info" }
+                    ];
+                    printTerminalLinesSequential(errorLines, 0, null);
+                }
+            }, 600);
+        });
+    }
+
+    function printTerminalLinesSequential(lines, idx, callback) {
+        if (idx >= lines.length) {
+            if (callback) callback();
+            return;
+        }
+        
+        var terminal = document.getElementById("terminalConsole");
+        var lineObj = lines[idx];
+        var div = document.createElement("div");
+        div.className = "terminal-line " + (lineObj.class || "");
+        div.innerText = lineObj.text;
+        terminal.appendChild(div);
+        
+        // Scroll automático
+        terminal.scrollTop = terminal.scrollHeight;
+        
+        setTimeout(function() {
+            printTerminalLinesSequential(lines, idx + 1, callback);
+        }, 180);
+    }
+</script>
+</div>
+</div>
+</div></footer>
+</div>
+<p id="made-with-eXe"> <a href="https://exelearning.net/" target="_blank" rel="noopener"> <span>Creado con eXeLearning <span>(nueva ventana)</span></span></a></p>
+</body>
+</html>
