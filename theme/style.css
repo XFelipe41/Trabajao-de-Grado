@@ -665,3 +665,339 @@ label[for="teacher-mode-toggler"] {
         padding-top: 1em;
     }
 }
+
+/* ==========================================================================
+   REDISEÑO FUTURISTA Y TECNOLÓGION (INSPIRADO EN PYTHON / TECH DEEP BLUE)
+   ========================================================================== */
+
+/* 1. Fondo de página y barra lateral simulada */
+.exe-content {
+    background-color: #f8fafc !important;
+}
+
+.exe-web-site .exe-content {
+    box-shadow: 
+        inset 300px 0 0 0 #121829,
+        inset 301px 0 0 0 #1e293b;
+    transition: box-shadow 0.3s ease;
+}
+
+/* Ocultar el fondo simulado de la barra lateral si el menú está cerrado */
+body.siteNav-off .exe-content {
+    box-shadow: none !important;
+}
+
+@media (max-width: 767.98px) {
+    .exe-web-site .exe-content {
+        box-shadow: 
+            inset 251px 0 0 0 #121829,
+            inset 252px 0 0 0 #1e293b;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .exe-web-site .exe-content {
+        box-shadow: none !important;
+    }
+}
+
+/* 2. Barra de navegación lateral */
+#siteNav {
+    background: #121829 !important;
+    padding-top: 80px !important;
+    border-right: 1px solid #1e293b !important;
+}
+
+#siteNav a {
+    color: #cbd5e1 !important;
+    font-weight: 500;
+    margin: 4px 8px !important;
+    padding: 10px 15px !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+#siteNav a:hover {
+    background: #1e2942 !important;
+    color: #ffffff !important;
+}
+
+#siteNav a.active {
+    background: #ffca28 !important; /* Amarillo Python */
+    color: #121829 !important;
+    font-weight: 600 !important;
+    box-shadow: 0 4px 12px rgba(255, 202, 40, 0.25) !important;
+}
+
+#siteNav a.highlighted-link {
+    color: #ffca28 !important;
+    background: #1e2942 !important;
+}
+
+/* 3. Banner del encabezado principal */
+.main-header {
+    background: linear-gradient(135deg, #121829 0%, #1e2942 100%) !important;
+    color: #ffffff !important;
+    padding: 35px 40px !important;
+    border-radius: 16px !important;
+    margin-bottom: 40px !important;
+    box-shadow: 0 10px 30px rgba(18, 24, 41, 0.15) !important;
+    border-left: 6px solid #ffca28 !important; /* Detalle amarillo */
+}
+
+.package-header .package-title {
+    color: #ffca28 !important;
+    font-size: 2rem !important;
+    font-weight: 600 !important;
+    margin: 0 0 8px 0 !important;
+    line-height: 1.2 !important;
+}
+
+.package-header .package-subtitle {
+    color: #94a3b8 !important;
+    font-size: 1.05rem !important;
+    margin: 0 !important;
+    font-weight: 300 !important;
+}
+
+.page-header .page-title {
+    color: #ffffff !important;
+    font-size: 1.35rem !important;
+    font-weight: 500 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    margin-top: 20px !important;
+    padding-top: 20px !important;
+}
+
+/* 4. Tarjetas de Contenido (iDevices) */
+.exe-content .box {
+    margin: 35px 0 !important;
+    border: none !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.04) !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+}
+
+.exe-content .box-head {
+    background: linear-gradient(135deg, #1a2035 0%, #2c3554 100%) !important;
+    color: #ffffff !important;
+    padding: 18px 25px !important;
+    border-radius: 16px 16px 0 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    border-bottom: none !important;
+    min-height: 60px !important;
+}
+
+.exe-content .box-title {
+    color: #ffca28 !important; /* Amarillo Python */
+    font-size: 1.25rem !important;
+    font-weight: 600 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    float: none !important;
+}
+
+.exe-export .box .box-icon img {
+    margin-right: 0 !important;
+    filter: brightness(0) invert(82%) sepia(28%) saturate(3025%) hue-rotate(352deg) brightness(104%) contrast(102%) !important; /* Iconos en amarillo */
+    width: 32px !important;
+    height: auto !important;
+}
+
+.exe-export .box .box-content {
+    background: #ffffff !important;
+    border: none !important;
+    padding: 30px !important;
+    border-radius: 0 0 16px 16px !important;
+}
+
+/* 5. Botones de Navegación Superior ("Anterior" / "Siguiente") - Side-by-Side a la Derecha */
+.nav-buttons .nav-button {
+    position: fixed !important;
+    top: 20px !important;
+    z-index: 999 !important;
+    background: #ffca28 !important; /* Amarillo */
+    color: #121829 !important;
+    border-radius: 30px !important;
+    width: auto !important;
+    height: auto !important;
+    padding: 10px 24px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 4px 15px rgba(255, 202, 40, 0.25) !important;
+    border: none !important;
+    text-decoration: none !important;
+    font-size: 0.9em !important;
+    font-weight: 600 !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.nav-buttons .nav-button:hover,
+.nav-buttons .nav-button:focus {
+    background: #ffd54f !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(255, 202, 40, 0.4) !important;
+}
+
+.nav-buttons span.nav-button {
+    background: #cbd5e1 !important;
+    color: #64748b !important;
+    box-shadow: none !important;
+    cursor: not-allowed !important;
+    opacity: 0.6 !important;
+}
+
+.nav-buttons span.nav-button:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.nav-buttons .nav-button-left {
+    right: 170px !important; /* Lado a lado */
+    left: auto !important;
+}
+
+.nav-buttons .nav-button-right {
+    right: 20px !important;
+    left: auto !important;
+}
+
+/* Mostrar texto "Anterior" y "Siguiente" */
+.nav-buttons .nav-button span {
+    position: static !important;
+    clip: auto !important;
+    display: inline-block !important;
+    color: inherit !important;
+    font-weight: 600 !important;
+}
+
+/* Flechas con pseudo-elementos */
+.nav-buttons .nav-button-left::before {
+    content: "←";
+    margin-right: 8px;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.nav-buttons .nav-button-right::after {
+    content: "→";
+    margin-left: 8px;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+/* 6. Botones Toggler (Menú y Buscador) */
+button.toggler {
+    background: #ffca28 !important;
+    color: #121829 !important;
+    border-radius: 50% !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15) !important;
+    transition: all 0.3s ease !important;
+}
+
+button.toggler:hover {
+    background-color: #ffd54f !important;
+    transform: scale(1.05) !important;
+}
+
+button#siteNavToggler {
+    left: 245px !important; /* Al borde del menú abierto */
+    top: 20px !important;
+    z-index: 1000 !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em !important;
+    border: none !important;
+}
+
+body.siteNav-off button#siteNavToggler {
+    left: 20px !important; /* Al borde izquierdo con menú cerrado */
+}
+
+/* Iconos dinámicos de texto para los botones del menú y buscador */
+button#siteNavToggler::before {
+    content: "✕" !important; /* Equis para cerrar cuando está abierto */
+    font-weight: bold !important;
+}
+
+body.siteNav-off button#siteNavToggler::before {
+    content: "☰" !important; /* Hamburguesa para abrir cuando está cerrado */
+    font-weight: bold !important;
+}
+
+button#searchBarTogger {
+    left: auto !important;
+    right: 320px !important; /* Colocado a la izquierda de los botones de navegación */
+    top: 20px !important;
+    z-index: 1000 !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+button#searchBarTogger::before {
+    content: "🔍" !important;
+    font-size: 1em !important;
+}
+
+/* Ajustes de espacio de la página para acomodar los nuevos botones arriba */
+.exe-web-site main.page {
+    padding-top: 6.5em !important;
+}
+
+/* Asegurar que las tarjetas iDevice de Bootstrap tengan bordes y relleno adecuados */
+.exe-content .iDevice {
+    border: none !important;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.04) !important;
+    border-radius: 16px !important;
+    background-color: #ffffff !important;
+}
+
+.exe-content .iDevice_wrapper {
+    margin-bottom: 35px !important;
+}
+
+@media (max-width: 767.98px) {
+    button#siteNavToggler {
+        left: 210px !important;
+    }
+    
+    body.siteNav-off button#siteNavToggler {
+        left: 20px !important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .exe-web-site .exe-content {
+        box-shadow: none !important;
+    }
+    
+    button#siteNavToggler {
+        position: absolute !important;
+        left: 20px !important;
+        top: 20px !important;
+    }
+    
+    .nav-buttons .nav-button-left {
+        position: absolute !important;
+        right: 150px !important;
+        left: auto !important;
+    }
+    
+    .nav-buttons .nav-button-right {
+        position: absolute !important;
+        right: 20px !important;
+        left: auto !important;
+    }
+    
+    button#searchBarTogger {
+        position: absolute !important;
+        right: 280px !important;
+        left: auto !important;
+    }
+}
