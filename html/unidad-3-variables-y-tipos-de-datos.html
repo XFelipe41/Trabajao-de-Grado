@@ -59,6 +59,64 @@
         font-weight: 600;
         border: none !important;
     }
+    /* Estilos para el Puzle de Código */
+    .puzzle-pool {
+        min-height: 220px;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        border-radius: 8px;
+        transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+    .code-block-puzzle {
+        background-color: #282c34;
+        color: #abb2bf;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 0.9em;
+        padding: 10px 15px;
+        border: 1px solid #3e4452;
+        border-radius: 6px;
+        cursor: grab;
+        user-select: none;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 10px;
+        transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    }
+    .code-block-puzzle:hover {
+        border-color: #61afef;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    }
+    .code-block-puzzle:active {
+        cursor: grabbing;
+    }
+    .code-block-puzzle.dragging {
+        opacity: 0.4;
+        border: 2px dashed #61afef;
+        background-color: #21252b;
+    }
+    .dragover {
+        background-color: #e2e8f0 !important;
+        border-color: #3498db !important;
+    }
+    .puzzle-indent-1 {
+        padding-left: 35px !important;
+    }
+    .puzzle-indent-2 {
+        padding-left: 55px !important;
+    }
+    .puzzle-badge {
+        background: #4f5b66;
+        color: #a7adba;
+        font-size: 0.75em;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-weight: bold;
+    }
 </style>
 </head>
 <body class="exe-export exe-web-site" lang="es">
@@ -185,11 +243,74 @@
 <p style="font-size: 1.1em; color: #1a2a6c; font-weight: bold; margin-top: 0;">❓ ¿Cuál es el valor booleano correcto en Python?</p>
 <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 15px;"><label style="background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #e1e8ed; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: all 0.3s ease;"> <input type="radio" name="pregunta_3" style="transform: scale(1.2);"> <code>true</code> (con minúscula) </label> <label style="background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #e1e8ed; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: all 0.3s ease;"> <input type="radio" name="pregunta_3" style="transform: scale(1.2);"> <code>Verdadero</code> (en español) </label> <label style="background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #e1e8ed; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: all 0.3s ease;"> <input type="radio" name="pregunta_3" style="transform: scale(1.2);"> <code>True</code> (con Mayúscula) </label></div>
 </div>
+<button id="btn-verificar-quiz" style="margin-top: 25px; background-color: #b21f1f; color: white; border: none; padding: 12px 25px; border-radius: 25px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: fit-content; align-self: flex-start;">Verificar Respuestas</button>
+<div id="quiz-feedback" style="margin-top: 20px; font-weight: 500; display: none; padding: 15px; border-radius: 8px; line-height: 1.5; font-size: 0.95em;"></div>
 </div>
 </div>
 </div><p class="clearfix"></p></div>
             </div></div></div></div>
-</div></article><article id="202603301445576354HK" class="box"> <header class="box-head no-icon"> <h1 class="box-title">Buscar palabras</h1>
+</div></article>
+
+<!-- iDevice: Zona de Retos Puzles de Código -->
+<article id="puzzle-box" class="box">
+    <header class="box-head">
+        <div class="box-icon exe-icon">
+            <img src="../theme/icons/think.png" alt="">
+        </div>
+        <h1 class="box-title">🧩 Zona de Retos: Puzles de Código de Variables</h1>
+        <button class="box-toggle box-toggle-on" title="Ocultar/Mostrar contenido"> <span>Ocultar/Mostrar contenido</span></button>
+    </header>
+    <div class="box-content">
+        <div class="exe-text-template">
+            <div style="font-family: 'Poppins', sans-serif; padding: 15px; max-width: 900px; margin: auto;">
+                <p style="text-align: justify; line-height: 1.6;">
+                    ¡Es hora de la práctica! A continuación verás bloques de código desordenados. Tu objetivo es **ordenarlos lógicamente** para cumplir con el propósito planteado.
+                </p>
+                <div style="font-size: 0.9em; color: #856404; background: #fff3cd; padding: 12px; border-radius: 8px; border-left: 4px solid #f1c40f; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                    <span>💡</span>
+                    <span><strong>Instrucciones:</strong> Puedes <strong>arrastrar y soltar</strong> los bloques de un lado a otro, o simplemente <strong>hacer clic</strong> en ellos para moverlos rápidamente. ¡Asegúrate de respetar la lógica del flujo del programa!</span>
+                </div>
+                
+                <!-- Contenedor del Juego -->
+                <div id="game-wrapper" style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 2px solid #f1f5f9; padding-bottom: 15px;">
+                        <h4 id="puzzle-title" style="margin: 0; color: #1a2a6c; font-weight: 600; font-size: 1.2em;">Reto 1: Saludo Personalizado</h4>
+                        <span id="puzzle-step" style="background: #b21f1f; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; font-weight: 600;">Reto 1 de 3</span>
+                    </div>
+                    <p id="puzzle-desc" style="font-size: 0.95em; color: #475569; margin-bottom: 20px; font-weight: 500; min-height: 40px;">Ordena el código para definir una variable nombre, una variable edad y mostrar un saludo en pantalla.</p>
+                    
+                    <div class="row" style="margin-bottom: 25px;">
+                        <!-- Bloques Disponibles -->
+                        <div class="col-md-6" style="margin-bottom: 15px;">
+                            <span style="font-weight: 600; font-size: 0.9em; color: #475569; display: block; margin-bottom: 8px;">📋 Bloques Desordenados:</span>
+                            <div id="blocks-source" class="puzzle-pool" style="background: #f8fafc; border: 2px dashed #cbd5e1; border-radius: 8px; padding: 15px; min-height: 220px; display: flex; flex-direction: column; gap: 10px;">
+                                <!-- Se llenará dinámicamente -->
+                            </div>
+                        </div>
+                        
+                        <!-- Solución -->
+                        <div class="col-md-6" style="margin-bottom: 15px;">
+                            <span style="font-weight: 600; font-size: 0.9em; color: #475569; display: block; margin-bottom: 8px;">💻 Código Ordenado:</span>
+                            <div id="blocks-solution" class="puzzle-pool" style="background: #f1f5f9; border: 2px solid #94a3b8; border-radius: 8px; padding: 15px; min-height: 220px; display: flex; flex-direction: column; gap: 10px;">
+                                <!-- Se llenará dinámicamente -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                        <button id="btn-verificar-puzzle" style="background-color: #2ecc71; color: white; border: none; padding: 10px 22px; border-radius: 25px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(46, 204, 113, 0.2);">Verificar Código</button>
+                        <button id="btn-reiniciar-puzzle" style="background-color: #94a3b8; color: white; border: none; padding: 10px 22px; border-radius: 25px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">Reiniciar Reto</button>
+                        <button id="btn-siguiente-puzzle" style="background-color: #3498db; color: white; border: none; padding: 10px 22px; border-radius: 25px; font-weight: 600; cursor: pointer; display: none; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(52, 152, 219, 0.2);">Siguiente Reto 🎉</button>
+                    </div>
+                    
+                    <div id="puzzle-feedback" style="margin-top: 20px; font-weight: 500; padding: 15px; border-radius: 8px; display: none; line-height: 1.5;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
+<article id="202603301445576354HK" class="box"> <header class="box-head no-icon"> <h1 class="box-title">Buscar palabras</h1>
 <button class="box-toggle box-toggle-on" title="Ocultar/Mostrar contenido"> <span>Ocultar/Mostrar contenido</span></button></header><div class="box-content"> <div id="20260330144557632HYV" class="idevice_node word-search" data-idevice-path="../idevices/word-search/" data-idevice-type="word-search"><div class="sopa-IDevice">
         <div class="game-evaluation-ids js-hidden" data-id="20260330144557632HYV" data-evaluationb="false" data-evaluationid="20260325010319SJDVSU"></div>
                 <div class="sopa-version js-hidden">2</div>
@@ -220,7 +341,366 @@
 <p style="font-weight: 600; color: #555;">Juan Felipe Caicedo Tabio</p>
 <p style="font-size: 0.8em; color: #888;">Trabajo de Grado - Introducción a Python - 2026</p>
 </div>
-<script>\u000a    // L\u00f3gica para la barra de progreso al hacer scroll\u000a    window.onscroll = function() {\u000a        var winScroll = document.body.scrollTop || document.documentElement.scrollTop;\u000a        var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;\u000a        var scrolled = (winScroll / height) * 100;\u000a        document.getElementById("progress-bar").style.width = scrolled + "%";\u000a    };\u000a</script>
+<script>
+    // Lógica para la barra de progreso al hacer scroll
+    window.onscroll = function() {
+        var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        var scrolled = (winScroll / height) * 100;
+        document.getElementById("progress-bar").style.width = scrolled + "%";
+    };
+
+    // ==========================================
+    // Lógica para validar el cuestionario teórico
+    // ==========================================
+    document.getElementById('btn-verificar-quiz').addEventListener('click', function() {
+        var correctas = {
+            'pregunta_1': 2, // "Texto (str)"
+            'pregunta_2': 1, // "Decimal (float)"
+            'pregunta_3': 2  // "True (con Mayúscula)"
+        };
+        
+        var explicaciones = {
+            'pregunta_1': 'En Python, las cadenas de texto (strings) se definen rodeando caracteres con comillas simples o dobles.',
+            'pregunta_2': 'Los números que contienen una parte fraccionaria o decimal (como 19.99) pertenecen al tipo de dato flotante o decimal (float).',
+            'pregunta_3': 'En Python, los valores booleanos distinguen mayúsculas y minúsculas; deben escribirse siempre con la primera letra en mayúscula: True y False.'
+        };
+        
+        var totalPreguntas = 3;
+        var aciertos = 0;
+        var feedbackHTML = '';
+        
+        for (var key in correctas) {
+            var inputs = document.getElementsByName(key);
+            var respondida = false;
+            var correctaIndex = correctas[key];
+            
+            // Restablecer estilos de etiquetas primero
+            for (var i = 0; i < inputs.length; i++) {
+                var label = inputs[i].parentNode;
+                label.style.borderColor = '#e1e8ed';
+                label.style.backgroundColor = '#f8fafc';
+                label.style.color = '#333';
+            }
+            
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].checked) {
+                    respondida = true;
+                    var selectedLabel = inputs[i].parentNode;
+                    if (i === correctaIndex) {
+                        aciertos++;
+                        selectedLabel.style.borderColor = '#2ecc71';
+                        selectedLabel.style.backgroundColor = '#e8f8f0';
+                        selectedLabel.style.color = '#27ae60';
+                        selectedLabel.style.fontWeight = '600';
+                    } else {
+                        selectedLabel.style.borderColor = '#e74c3c';
+                        selectedLabel.style.backgroundColor = '#fce8e6';
+                        selectedLabel.style.color = '#c0392b';
+                        selectedLabel.style.fontWeight = '600';
+                        
+                        // Resaltar la correcta
+                        var correctLabel = inputs[correctaIndex].parentNode;
+                        correctLabel.style.borderColor = '#2ecc71';
+                        correctLabel.style.backgroundColor = '#e8f8f0';
+                        correctLabel.style.color = '#27ae60';
+                    }
+                    break;
+                }
+            }
+            
+            if (!respondida) {
+                // Resaltar la correcta incluso si no fue respondida
+                var correctLabel = inputs[correctaIndex].parentNode;
+                correctLabel.style.borderColor = '#2ecc71';
+                correctLabel.style.backgroundColor = '#e8f8f0';
+                correctLabel.style.color = '#27ae60';
+            }
+        }
+        
+        var feedbackEl = document.getElementById('quiz-feedback');
+        feedbackEl.style.display = 'block';
+        
+        if (aciertos === totalPreguntas) {
+            feedbackEl.style.backgroundColor = '#e8f8f0';
+            feedbackEl.style.color = '#27ae60';
+            feedbackEl.style.border = '1px solid #2ecc71';
+            feedbackHTML = '<strong style="font-size: 1.1em;">🎉 ¡Perfecto! Respondiste todas las preguntas correctamente (3/3).</strong><br><br>';
+        } else {
+            feedbackEl.style.backgroundColor = '#fef9e7';
+            feedbackEl.style.color = '#b7950b';
+            feedbackEl.style.border = '1px solid #f1c40f';
+            feedbackHTML = '<strong style="font-size: 1.1em;">⚠️ Has obtenido ' + aciertos + ' de ' + totalPreguntas + ' aciertos. Revisa las respuestas correctas marcadas en verde:</strong><br><br>';
+        }
+        
+        feedbackHTML += '<ul style="margin: 0; padding-left: 20px;">';
+        feedbackHTML += '<li style="margin-bottom: 8px;"><strong>Pregunta 1:</strong> ' + explicaciones['pregunta_1'] + '</li>';
+        feedbackHTML += '<li style="margin-bottom: 8px;"><strong>Pregunta 2:</strong> ' + explicaciones['pregunta_2'] + '</li>';
+        feedbackHTML += '<li style="margin-bottom: 0;"><strong>Pregunta 3:</strong> ' + explicaciones['pregunta_3'] + '</li>';
+        feedbackHTML += '</ul>';
+        
+        feedbackEl.innerHTML = feedbackHTML;
+    });
+
+    // ==========================================
+    // Lógica para la Zona de Retos (Puzles)
+    // ==========================================
+    var currentChallengeIndex = 0;
+    var challenges = [
+        {
+            title: "Reto 1: Saludo Personalizado",
+            desc: "Ordena el código para definir una variable nombre, una variable edad y mostrar un saludo en pantalla.",
+            blocks: [
+                { id: "c1_b1", code: 'nombre = "Carlos"', indent: 0 },
+                { id: "c1_b2", code: 'edad = 20', indent: 0 },
+                { id: "c1_b3", code: 'saludo = "Hola, mi nombre es " + nombre', indent: 0 },
+                { id: "c1_b4", code: 'print(saludo)', indent: 0 }
+            ],
+            validate: function(orderedCodes) {
+                var idxNombre = orderedCodes.indexOf('nombre = "Carlos"');
+                var idxEdad = orderedCodes.indexOf('edad = 20');
+                var idxSaludo = orderedCodes.indexOf('saludo = "Hola, mi nombre es " + nombre');
+                var idxPrint = orderedCodes.indexOf('print(saludo)');
+                
+                if (idxNombre === -1 || idxEdad === -1 || idxSaludo === -1 || idxPrint === -1) return false;
+                // La variable 'nombre' debe definirse antes del 'saludo', y 'saludo' antes del 'print'
+                return (idxNombre < idxSaludo) && (idxSaludo < idxPrint);
+            },
+            feedback: "<strong>🎉 ¡Excelente!</strong> En Python, definimos las variables primero y luego podemos usarlas para concatenar o realizar otras operaciones. Nota que la variable 'edad' fue creada pero no se utilizó en el saludo, lo cual es totalmente válido."
+        },
+        {
+            title: "Reto 2: Cálculo de Descuento",
+            desc: "Calcula un 10% de descuento sobre un precio de 100 y muestra el precio final en pantalla.",
+            blocks: [
+                { id: "c2_b1", code: 'precio = 100', indent: 0 },
+                { id: "c2_b2", code: 'descuento = precio * 0.10', indent: 0 },
+                { id: "c2_b3", code: 'precio_final = precio - descuento', indent: 0 },
+                { id: "c2_b4", code: 'print(precio_final)', indent: 0 }
+            ],
+            validate: function(orderedCodes) {
+                var correctOrder = [
+                    'precio = 100',
+                    'descuento = precio * 0.10',
+                    'precio_final = precio - descuento',
+                    'print(precio_final)'
+                ];
+                if (orderedCodes.length !== correctOrder.length) return false;
+                return orderedCodes.every(function(code, idx) { return code === correctOrder[idx]; });
+            },
+            feedback: "<strong>⭐ ¡Perfecto!</strong> Has seguido el flujo correcto del cálculo: primero estableces el precio, luego calculas el descuento basándote en el precio, obtienes la diferencia final y finalmente imprimes el resultado."
+        },
+        {
+            title: "Reto 3: Conversión de Tipos",
+            desc: "Dado un número en formato de texto \"5\", conviértelo a entero, calcula su triple e imprime el resultado.",
+            blocks: [
+                { id: "c3_b1", code: 'texto = "5"', indent: 0 },
+                { id: "c3_b2", code: 'numero = int(texto)', indent: 0 },
+                { id: "c3_b3", code: 'triple = numero * 3', indent: 0 },
+                { id: "c3_b4", code: 'print(triple)', indent: 0 }
+            ],
+            validate: function(orderedCodes) {
+                var correctOrder = [
+                    'texto = "5"',
+                    'numero = int(texto)',
+                    'triple = numero * 3',
+                    'print(triple)'
+                ];
+                if (orderedCodes.length !== correctOrder.length) return false;
+                return orderedCodes.every(function(code, idx) { return code === correctOrder[idx]; });
+            },
+            feedback: "<strong>🔥 ¡Espectacular!</strong> Este ejercicio demuestra la conversión de tipos. Si multiplicáramos 'texto' directamente (texto * 3), obtendríamos '555' porque era una cadena. Al convertirlo con 'int()', realizamos una operación matemática real: 5 * 3 = 15."
+        }
+    ];
+
+    var sourceContainer = document.getElementById('blocks-source');
+    var solutionContainer = document.getElementById('blocks-solution');
+    var feedbackPuzzle = document.getElementById('puzzle-feedback');
+    var btnVerificar = document.getElementById('btn-verificar-puzzle');
+    var btnReiniciar = document.getElementById('btn-reiniciar-puzzle');
+    var btnSiguiente = document.getElementById('btn-siguiente-puzzle');
+
+    function loadChallenge(index) {
+        if (index >= challenges.length) {
+            // Completado todo el juego
+            document.getElementById('puzzle-title').innerText = "🏆 ¡Felicidades! Completaste todos los retos";
+            document.getElementById('puzzle-step').style.display = "none";
+            document.getElementById('puzzle-desc').innerHTML = "Has demostrado un excelente dominio de las variables, los tipos de datos y la lógica secuencial en Python.";
+            sourceContainer.parentNode.style.display = "none";
+            solutionContainer.parentNode.style.display = "none";
+            btnVerificar.style.display = "none";
+            btnReiniciar.style.display = "none";
+            btnSiguiente.style.display = "none";
+            
+            feedbackPuzzle.style.display = "block";
+            feedbackPuzzle.style.backgroundColor = "#e8f8f0";
+            feedbackPuzzle.style.color = "#27ae60";
+            feedbackPuzzle.style.border = "1px solid #2ecc71";
+            feedbackPuzzle.innerHTML = "<strong>🏆 ¡Has superado la Zona de Retos!</strong> Eres capaz de declarar variables, operar con ellas y hacer conversiones de tipos lógicos de forma impecable. ¡Sigue así!";
+            return;
+        }
+
+        var challenge = challenges[index];
+        document.getElementById('puzzle-title').innerText = challenge.title;
+        document.getElementById('puzzle-step').innerText = "Reto " + (index + 1) + " de " + challenges.length;
+        document.getElementById('puzzle-desc').innerText = challenge.desc;
+        feedbackPuzzle.style.display = "none";
+        btnSiguiente.style.display = "none";
+        btnVerificar.style.display = "inline-block";
+        btnReiniciar.style.display = "inline-block";
+
+        sourceContainer.innerHTML = '';
+        solutionContainer.innerHTML = '';
+
+        // Copiar y desordenar
+        var shuffledBlocks = challenge.blocks.slice().sort(function() { return Math.random() - 0.5; });
+        
+        shuffledBlocks.forEach(function(block) {
+            var el = document.createElement('div');
+            el.className = 'code-block-puzzle';
+            el.id = block.id;
+            el.draggable = true;
+            el.setAttribute('data-code', block.code);
+            
+            // Añadir indentación visual
+            if (block.indent === 1) el.className += ' puzzle-indent-1';
+            if (block.indent === 2) el.className += ' puzzle-indent-2';
+            
+            // Formatear texto con badge para indicar que es una línea
+            el.innerHTML = '<span class="puzzle-badge">Línea</span> <code>' + block.code.replace(/ /g, '&nbsp;') + '</code>';
+            
+            // --- Drag & Drop Events ---
+            el.addEventListener('dragstart', function(e) {
+                el.classList.add('dragging');
+                e.dataTransfer.setData('text/plain', el.id);
+            });
+            el.addEventListener('dragend', function() {
+                el.classList.remove('dragging');
+            });
+            
+            // --- Click Event (Para dispositivos móviles) ---
+            el.addEventListener('click', function() {
+                if (el.parentNode.id === 'blocks-source') {
+                    solutionContainer.appendChild(el);
+                } else {
+                    sourceContainer.appendChild(el);
+                }
+                feedbackPuzzle.style.display = 'none'; // Ocultar feedback al mover
+            });
+
+            sourceContainer.appendChild(el);
+        });
+    }
+
+    // Configurar contenedores para arrastrar y soltar
+    [sourceContainer, solutionContainer].forEach(function(container) {
+        container.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            container.classList.add('dragover');
+            var dragging = document.querySelector('.dragging');
+            if (dragging) {
+                var afterElement = getDragAfterElement(container, e.clientY);
+                if (afterElement == null) {
+                    container.appendChild(dragging);
+                } else {
+                    container.insertBefore(dragging, afterElement);
+                }
+            }
+        });
+
+        container.addEventListener('dragleave', function() {
+            container.classList.remove('dragover');
+        });
+
+        container.addEventListener('drop', function(e) {
+            e.preventDefault();
+            container.classList.remove('dragover');
+            var id = e.dataTransfer.getData('text/plain');
+            var el = document.getElementById(id);
+            if (el) {
+                var afterElement = getDragAfterElement(container, e.clientY);
+                if (afterElement == null) {
+                    container.appendChild(el);
+                } else {
+                    container.insertBefore(el, afterElement);
+                }
+            }
+        });
+    });
+
+    function getDragAfterElement(container, y) {
+        var draggableElements = Array.from(container.querySelectorAll('.code-block-puzzle:not(.dragging)'));
+        return draggableElements.reduce(function(closest, child) {
+            var box = child.getBoundingClientRect();
+            var offset = y - box.top - box.height / 2;
+            if (offset < 0 && offset > closest.offset) {
+                return { offset: offset, element: child };
+            } else {
+                return closest;
+            }
+        }, { offset: Number.NEGATIVE_INFINITY }).element;
+    }
+
+    // Verificar solución
+    btnVerificar.addEventListener('click', function() {
+        var challenge = challenges[currentChallengeIndex];
+        var solutionBlocks = Array.from(solutionContainer.children);
+        
+        if (solutionBlocks.length < challenge.blocks.length) {
+            feedbackPuzzle.style.display = "block";
+            feedbackPuzzle.style.backgroundColor = "#fef9e7";
+            feedbackPuzzle.style.color = "#b7950b";
+            feedbackPuzzle.style.border = "1px solid #f1c40f";
+            feedbackPuzzle.innerHTML = "<strong>⚠️ Reto incompleto:</strong> Arrastra o haz clic en todos los bloques desordenados hacia la sección de <strong>Código Ordenado</strong> antes de verificar.";
+            return;
+        }
+
+        var orderedCodes = solutionBlocks.map(function(el) { return el.getAttribute('data-code'); });
+        var isCorrect = challenge.validate(orderedCodes);
+
+        feedbackPuzzle.style.display = "block";
+
+        if (isCorrect) {
+            feedbackPuzzle.style.backgroundColor = "#e8f8f0";
+            feedbackPuzzle.style.color = "#27ae60";
+            feedbackPuzzle.style.border = "1px solid #2ecc71";
+            feedbackPuzzle.innerHTML = challenge.feedback;
+            
+            // Marcar bloques en verde
+            solutionBlocks.forEach(function(el) {
+                el.style.borderColor = '#2ecc71';
+                el.style.boxShadow = '0 0 10px rgba(46, 204, 113, 0.4)';
+            });
+
+            btnVerificar.style.display = "none";
+            btnSiguiente.style.display = "inline-block";
+        } else {
+            feedbackPuzzle.style.backgroundColor = "#fce8e6";
+            feedbackPuzzle.style.color = "#c0392b";
+            feedbackPuzzle.style.border = "1px solid #e74c3c";
+            feedbackPuzzle.innerHTML = "<strong>❌ Código incorrecto:</strong> Revisa el orden lógico. Asegúrate de declarar tus variables antes de realizar cálculos o de imprimirlas en pantalla. ¡Inténtalo de nuevo!";
+            
+            // Marcar bloques en rojo
+            solutionBlocks.forEach(function(el) {
+                el.style.borderColor = '#e74c3c';
+                el.style.boxShadow = '0 0 10px rgba(231, 76, 60, 0.4)';
+            });
+        }
+    });
+
+    // Reiniciar reto actual
+    btnReiniciar.addEventListener('click', function() {
+        loadChallenge(currentChallengeIndex);
+    });
+
+    // Siguiente reto
+    btnSiguiente.addEventListener('click', function() {
+        currentChallengeIndex++;
+        loadChallenge(currentChallengeIndex);
+    });
+
+    // Cargar primer reto
+    loadChallenge(currentChallengeIndex);
+</script>
 </div>
 </div>
 </div></footer>
