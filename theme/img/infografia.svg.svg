@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" width="100%" height="100%" style="background-color: #0f172a; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  
+  <!-- DEFINICIONES DE ESTILOS Y DEGRADADOS -->
+  <defs>
+    <linearGradient id="gradientLine" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#eab308" />
+    </linearGradient>
+    
+    <linearGradient id="gradBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a" />
+      <stop offset="100%" stop-color="#1d4ed8" />
+    </linearGradient>
+
+    <linearGradient id="gradYellow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ca8a04" />
+      <stop offset="100%" stop-color="#eab308" />
+    </linearGradient>
+    
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" mode="over" />
+    </filter>
+    
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- FONDO DE RED TECNOLÓGICA (DECORACIÓN SUTIL) -->
+  <g opacity="0.05">
+    <circle cx="100" cy="150" r="3" fill="#ffffff"/>
+    <circle cx="800" cy="250" r="4" fill="#ffffff"/>
+    <circle cx="200" cy="550" r="3" fill="#ffffff"/>
+    <circle cx="750" cy="850" r="5" fill="#ffffff"/>
+    <line x1="100" y1="150" x2="200" y2="550" stroke="#ffffff" stroke-width="0.5"/>
+    <line x1="800" y1="250" x2="750" y2="850" stroke="#ffffff" stroke-width="0.5"/>
+  </g>
+
+  <!-- ENCABEZADO PRINCIPAL -->
+  <g filter="url(#shadow)">
+    <rect x="50" y="40" width="800" height="120" rx="15" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+    <text x="450" y="90" text-anchor="middle" fill="#f8fafc" font-size="26" font-weight="800" letter-spacing="1">RUTA DE APRENDIZAJE DEL OVA</text>
+    <text x="450" y="125" text-anchor="middle" fill="#38bdf8" font-size="16" font-weight="600" letter-spacing="0.5">Introducción a la Programación y Uso de Python • Industria 4.0</text>
+  </g>
+
+  <!-- LÍNEA CENTRAL DE TIEMPO (MAPA DE RUTA) -->
+  <line x1="450" y1="220" x2="450" y2="1080" stroke="url(#gradientLine)" stroke-width="6" stroke-linecap="round" filter="url(#glow)"/>
+
+  <!-- ==================== ESTACIÓN 1 (IZQUIERDA) ==================== -->
+  <g filter="url(#shadow)">
+    <!-- Conector -->
+    <line x1="330" y1="290" x2="450" y2="290" stroke="#38bdf8" stroke-width="3" stroke-dasharray="4"/>
+    <!-- Tarjeta -->
+    <rect x="50" y="210" width="280" height="160" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+    <rect x="50" y="210" width="12" height="160" rx="12" fill="#38bdf8"/>
+    <!-- Contenido -->
+    <text x="80" y="250" fill="#38bdf8" font-size="14" font-weight="800" letter-spacing="1">ESTACIÓN 1</text>
+    <text x="80" y="275" fill="#f8fafc" font-size="16" font-weight="700">Unidad 1: Fundamentos</text>
+    <text x="80" y="295" fill="#f8fafc" font-size="16" font-weight="700">de Lógica Computacional</text>
+    <text x="80" y="325" fill="#94a3b8" font-size="13" font-weight="500">• Pensamiento algorítmico.</text>
+    <text x="80" y="343" fill="#94a3b8" font-size="13" font-weight="500">• Resolución de problemas.</text>
+    <!-- Círculo Central Número -->
+    <circle cx="450" cy="290" r="24" fill="#1e293b" stroke="#38bdf8" stroke-width="4"/>
+    <text x="450" y="296" text-anchor="middle" fill="#38bdf8" font-size="18" font-weight="800">01</text>
+  </g>
+
+  <!-- ==================== ESTACIÓN 2 (DERECHA) ==================== -->
+  <g filter="url(#shadow)">
+    <!-- Conector -->
+    <line x1="450" y1="490" x2="570" y2="490" stroke="#3b82f6" stroke-width="3" stroke-dasharray="4"/>
+    <!-- Tarjeta -->
+    <rect x="570" y="410" width="280" height="160" rx="12" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+    <rect x="838" y="410" width="12" height="160" rx="12" fill="#3b82f6"/>
+    <!-- Contenido -->
+    <text x="590" y="250" transform="translate(0,200)" fill="#3b82f6" font-size="14" font-weight="800" letter-spacing="1">ESTACIÓN 2</text>
+    <text x="590" y="275" transform="translate(0,200)" fill="#f8fafc" font-size="16" font-weight="700">Unidad 2: Sintaxis y</text>
+    <text x="590" y="295" transform="translate(0,200)" fill="#f8fafc" font-size="16" font-weight="700">Entorno de Python</text>
+    <text x="590" y="325" transform="translate(0,200)" fill="#94a3b8" font-size="13" font-weight="500">• Instalación y configuración.</text>
+    <text x="590" y="343" transform="translate(0,200)" fill="#94a3b8" font-size="13" font-weight="500">• Primeros scripts y ecosistema.</text>
+    <!-- Círculo Central Número -->
+    <circle cx="450" cy="490" r="24" fill="#1e293b" stroke="#3b82f6" stroke-width="4"/>
+    <text x="450" y="496" text-anchor="middle" fill="#3b82f6" font-size="18" font-weight="800">02</text>
+  </g>
+
+  <!-- ==================== ESTACIÓN 3 (IZQUIERDA) ==================== -->
+  <g filter="url(#shadow)">
+    <!-- Conector -->
+    <line x1="330" y1="690" x2="450" y2="690" stroke="#60a5fa" stroke-width="3" stroke-dasharray="4"/>
+    <!-- Tarjeta -->
+    <rect x="50" y="610" width="280" height="160" rx="12" fill="#1e293b" stroke="#60a5fa" stroke-width="2"/>
+    <rect x="50" y="610" width="12" height="160" rx="12" fill="#60a5fa"/>
+    <!-- Contenido -->
+    <text x="80" y="450" transform="translate(0,200)" fill="#60a5fa" font-size="14" font-weight="800" letter-spacing="1">ESTACIÓN 3</text>
+    <text x="80" y="475" transform="translate(0,200)" fill="#f8fafc" font-size="16" font-weight="700">Unidad 3: Gestión de Datos</text>
+    <text x="80" y="495" transform="translate(0,200)" fill="#f8fafc" font-size="16" font-weight="700">(Variables y Tipos)</text>
+    <text x="80" y="525" transform="translate(0,200)" fill="#94a3b8" font-size="13" font-weight="500">• Strings, enteros, flotantes y booleanos.</text>
+    <text x="80" y="543" transform="translate(0,200)" fill="#94a3b8" font-size="13" font-weight="500">• Manipulación dinámica de datos.</text>
+    <!-- Círculo Central Número -->
+    <circle cx="450" cy="690" r="24" fill="#1e293b" stroke="#60a5fa" stroke-width="4"/>
+    <text x="450" y="696" text-anchor="middle" fill="#60a5fa" font-size="18" font-weight="800">03</text>
+  </g>
+
+  <!-- ==================== ESTACIÓN 4 (DERECHA) ==================== -->
+  <g filter="url(#shadow)">
+    <!-- Conector -->
+    <line x1="450" y1="890" x2="570" y2="890" stroke="#eab308" stroke-width="3" stroke-dasharray="4"/>
+    <!-- Tarjeta -->
+    <rect x="570" y="810" width="280" height="160" rx="12" fill="#1e293b" stroke="#eab308" stroke-width="2"/>
+    <rect x="838" y="810" width="12" height="160" rx="12" fill="#eab308"/>
+    <!-- Contenido -->
+    <text x="590" y="650" transform="translate(0,200)" fill="#eab308" font-size="14" font-weight="800" letter-spacing="1">ESTACIÓN 4</text>
+    <text x="590" y="475" transform="translate(0,400)" fill="#f8fafc" font-size="16" font-weight="700">Unidad 4: Estructuras de</text>
+    <text x="590" y="495" transform="translate(0,400)" fill="#f8fafc" font-size="16" font-weight="700">Control (Toma de Decisiones)</text>
+    <text x="590" y="525" transform="translate(0,400)" fill="#94a3b8" font-size="13" font-weight="500">• Condicionales (if, else) y bucles.</text>
+    <text x="590" y="543" transform="translate(0,400)" fill="#94a3b8" font-size="13" font-weight="500">• Automatización de flujos lógicos.</text>
+    <!-- Círculo Central Número -->
+    <circle cx="450" cy="890" r="24" fill="#1e293b" stroke="#eab308" stroke-width="4"/>
+    <text x="450" y="896" text-anchor="middle" fill="#eab308" font-size="18" font-weight="800">04</text>
+  </g>
+
+  <!-- ==================== ESTACIÓN 5 (FINAL - CENTRAL) ==================== -->
+  <g filter="url(#shadow)">
+    <!-- Tarjeta Expandida Central -->
+    <rect x="250" y="1010" width="400" height="130" rx="12" fill="#1e293b" stroke="url(#gradientLine)" stroke-width="2.5"/>
+    <!-- Icono de Meta Estrellada / Bandera sutil -->
+    <path d="M 450 985 L 455 1000 L 470 1000 L 458 1010 L 462 1025 L 450 1015 L 438 1025 L 442 1010 L 430 1000 L 445 1000 Z" fill="#eab308"/>
+    <!-- Contenido -->
+    <text x="450" y="1045" text-anchor="middle" fill="#eab308" font-size="14" font-weight="800" letter-spacing="1.5">PROYECTO FINAL INTEGRADOR</text>
+    <text x="450" y="1075" text-anchor="middle" fill="#f8fafc" font-size="18" font-weight="700">Unidad 5: Automatización Real</text>
+    <text x="450" y="1105" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="600">Desarrollo de un Script Completo enfocado en la Industria 4.0</text>
+  </g>
+  
+</svg>
