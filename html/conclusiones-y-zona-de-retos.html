@@ -203,6 +203,34 @@
         }
     }
 
+    /* Sangría Francesa para Bibliografía APA */
+    .bibliografia-item {
+        padding-left: 2em;
+        text-indent: -2em;
+        margin-bottom: 1.2em;
+        text-align: justify;
+        line-height: 1.6;
+        font-size: 0.95em;
+        color: #2c3e50;
+    }
+    .bibliografia-item a {
+        color: #1070f7;
+        text-decoration: none;
+    }
+    .bibliografia-item a:hover {
+        text-decoration: underline;
+    }
+    .bibliografia-seccion {
+        margin-bottom: 25px;
+    }
+    .bibliografia-seccion-titulo {
+        font-size: 1.1em;
+        font-weight: 600;
+        color: #1a2a6c;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #cbd5e1;
+        padding-bottom: 5px;
+    }
 </style>
 </head>
 <body class="exe-export exe-web-site" lang="es">
@@ -305,7 +333,53 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </article>
 
+        <!-- iDevice: Referencias Bibliográficas -->
+        <article id="idevice-referencias" class="box"> 
+            <header class="box-head"> 
+                <div class="box-icon exe-icon"> 
+                    <img src="../theme/icons/book.png" alt="">
+                </div>
+                <h1 class="box-title">Referencias Bibliográficas </h1>
+                <button class="box-toggle box-toggle-on" title="Ocultar/Mostrar contenido"> <span>Ocultar/Mostrar contenido</span></button>
+            </header>
+            
+            <div class="box-content">
+                <div class="bibliografia-seccion">
+                    <h4 class="bibliografia-seccion-titulo">1. Referencias sobre Fundamentos de Python y Programación</h4>
+                    
+                    <div class="bibliografia-item">
+                        Downey, A. B. (2016). <em>Think Python: How to think like a computer scientist</em> (2nd ed.). O'Reilly Media.
+                    </div>
+                    <div class="bibliografia-item">
+                        Severance, C. R. (2016). <em>Python para todos: Explorando la información con Python 3</em>. CreateSpace Independent Publishing Platform.
+                    </div>
+                    <div class="bibliografia-item">
+                        Sweigart, A. (2019). <em>Automate the boring stuff with Python: Practical programming for total beginners</em> (2nd ed.). No Starch Press.
+                    </div>
+                    <div class="bibliografia-item">
+                        Van Rossum, G., & Drake, F. L. (2009). <em>The Python language reference manual</em>. Network Theory Ltd.
+                    </div>
+                </div>
+
+                <div class="bibliografia-seccion" style="margin-top: 30px;">
+                    <h4 class="bibliografia-seccion-titulo">2. Referencias sobre Educación, Didáctica de la Programación y OVAs</h4>
+                    
+                    <div class="bibliografia-item">
+                        García-Peñalvo, F. J., & Mendes, A. J. (2018). El pensamiento computacional: Un nuevo reto educativo. <em>Education in the Knowledge Society (EKS)</em>, 19(2), 7–12. <a href="https://revistas.usal.es/tres/index.php/eks/article/view/eks20181922945/18978" target="_blank" rel="noopener">https://revistas.usal.es/tres/index.php/eks/article/view/eks20181922945/18978</a>
+                    </div>
+                    <div class="bibliografia-item">
+                        Ministerio de Educación Nacional. (2022). <em>Orientaciones curriculares para la educación en tecnología e informática en la educación básica y media</em>. MEN.
+                    </div>
+                    <div class="bibliografia-item">
+                        Wiley, D. A. (2000). Connecting learning objects to instructional design theory: A definition, a metaphor, and a taxonomy. In D. A. Wiley (Ed.), <em>The Instructional Use of Learning Objects</em> (pp. 1–35). Association for Educational Communications and Technology.
+                    </div>
+                    <div class="bibliografia-item">
+                        Zapata-Ros, M. (2015). Pensamiento computacional: Una nueva alfabetización digital. <em>Revista de Educación a Distancia (RED)</em>, (46), 1–47. <a href="https://revistas.um.es/red/article/view/240321/183001" target="_blank" rel="noopener">https://revistas.um.es/red/article/view/240321/183001</a>
+                    </div>
+                </div>
             </div>
         </article>
 
